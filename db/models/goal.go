@@ -6,6 +6,7 @@ import (
 )
 
 type GoalCondition struct {
+	Slug int    `bson:"slug" json:"slug"`
 	Name string `bson:"name" json:"name"`
 }
 

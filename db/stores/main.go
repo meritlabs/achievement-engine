@@ -7,10 +7,11 @@ import (
 )
 
 type Store struct {
-	session  *mgo.Session
-	Goals    *mgo.Collection
-	Users    *mgo.Collection
-	Sessions *mgo.Collection
+	session      *mgo.Session
+	Achievements *mgo.Collection
+	Goals        *mgo.Collection
+	Users        *mgo.Collection
+	Sessions     *mgo.Collection
 }
 
 func InitStore() *Store {
@@ -21,15 +22,17 @@ func InitStore() *Store {
 	}
 
 	db := session.DB("achievement-engine")
+	achievements := db.C("achievements")
 	goals := db.C("goals")
 	users := db.C("users")
 	sessions := db.C("sessions")
 
 	return &Store{
-		session:  session,
-		Goals:    goals,
-		Users:    users,
-		Sessions: sessions,
+		session:      session,
+		Achievements: achievements,
+		Goals:        goals,
+		Users:        users,
+		Sessions:     sessions,
 	}
 }
 

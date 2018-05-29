@@ -55,9 +55,9 @@ func main() {
 		}
 		achievements := apiGroup.Group("/achievements", middleware.Auth(userService, logger))
 		{
-			achievements.GET("/", controllers.ListAchievements)
-			achievements.GET("/:slug", controllers.GetAchievement)
-			achievements.POST("/:slug", controllers.UpdateAchievement)
+			achievements.GET("/", controllers.ListAchievements(store))
+			achievements.GET("/:slug", controllers.GetAchievement(store))
+			achievements.POST("/:slug", controllers.UpdateAchievement(store))
 		}
 	}
 
