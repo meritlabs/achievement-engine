@@ -1,6 +1,9 @@
 package stores
 
-import "github.com/globalsign/mgo/bson"
+import (
+	"github.com/globalsign/mgo/bson"
+	"github.com/meritlabs/achievement-engine/db/models"
+)
 
 type SessionsStore interface {
 	CreateSession(userID bson.ObjectId, token string) error
@@ -8,9 +11,14 @@ type SessionsStore interface {
 }
 
 func (s *Store) CreateSession(userID bson.ObjectId, token string) error {
-	return nil
+	session := models.Session{
+		UserID: userID,
+		Token:  token,
+	}
+	return s.Sessions.Insert(&session)
 }
 
 func (s *Store) DeleteSessions(userID bson.ObjectId) error {
-	return nil
+	_, err := s.Sessions.RemoveAll(bson.M{"userId": userID})
+	return err
 }
