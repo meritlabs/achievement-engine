@@ -7,8 +7,8 @@ import (
 
 type AchievementsStore interface {
 	GetAchievementsForUser(userID bson.ObjectId) (*[]models.Achievement, error)
-	GetAchievementForUser(userID bson.ObjectId, achivementId bson.ObjectId) (*[]models.Achievement, error)
-	CopyAchievementsFromGoals(goals []*models.Goal) (*[]models.Achievement, error)
+	GetAchievementForUser(userID bson.ObjectId, achivementId bson.ObjectId) (*models.Achievement, error)
+	CopyAchievementsFromGoals(userID bson.ObjectId, goals []models.Goal) (*[]models.Achievement, error)
 }
 
 func (s *Store) GetAchievementsForUser(userID bson.ObjectId) (*[]models.Achievement, error) {
@@ -23,11 +23,13 @@ func (s *Store) GetAchievementForUser(userID bson.ObjectId, achivementId bson.Ob
 	return &achievement, err
 }
 
-func (s *Store) CopyAchievementsFromGoals(goals []*models.Goal) (*[]models.Achievement, error) {
+func (s *Store) CopyAchievementsFromGoals(userID bson.ObjectId, goals []models.Goal) (*[]models.Achievement, error) {
 	var achievements []models.Achievement
 	for _, goal := range goals {
 		a := models.Achievement{}
-		a.FromGoal(goal)
+		a.FromGoal(&goal)
+		a.UserID = userID
+
 		err := s.Achievements.Insert(a)
 
 		if err != nil {

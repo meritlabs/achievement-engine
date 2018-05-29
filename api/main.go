@@ -30,7 +30,7 @@ func createUserService(store *stores.Store, logger *log.Logger) services.UsersSe
 		logger,
 	)
 
-	usersService := services.UsersService{Net, BCClient, store, store}
+	usersService := services.UsersService{Net, BCClient, store, store, store, store}
 	return usersService
 }
 

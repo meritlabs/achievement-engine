@@ -23,10 +23,12 @@ const msgMagic = "Merit Signed Message:\n"
 
 // UsersService
 type UsersService struct {
-	NetParams     chaincfg.Params
-	BCClient      Client
-	UsersStore    stores.UsersStore
-	SessionsStore stores.SessionsStore
+	NetParams         chaincfg.Params
+	BCClient          Client
+	UsersStore        stores.UsersStore
+	SessionsStore     stores.SessionsStore
+	GoalsStore        stores.GoalsStore
+	AchievementsStore stores.AchievementsStore
 }
 
 // ParsePubKey returns PublicKey struct from hex
@@ -108,6 +110,16 @@ func (s *UsersService) CreateUserWithSignature(message, pubkeyHex, signatureHex,
 		if err := s.getUserFromBlockchain(&user, pubkeyHex); err != nil {
 			return nil, err
 		}
+	}
+
+	goals, err := s.GoalsStore.ListGoals()
+	if err != nil {
+		return nil, err
+	}
+
+	_, err = s.AchievementsStore.CopyAchievementsFromGoals(user.ID, goals)
+	if err != nil {
+		return nil, err
 	}
 
 	return &user, nil
