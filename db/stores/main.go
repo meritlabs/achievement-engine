@@ -14,8 +14,8 @@ type Store struct {
 	Sessions     *mgo.Collection
 }
 
-func InitStore() *Store {
-	session, err := db.WithDBSession()
+func InitStore(connStr string) *Store {
+	session, err := db.WithDBSession(connStr)
 
 	if err != nil {
 		panic(err)

@@ -1,0 +1,11 @@
+db:
+  connectionString: localhost
+
+blockchain:
+  network: testnet
+  rpc:
+    host: localhost
+    username: merit
+    password: local321
+
+port: ":8686"

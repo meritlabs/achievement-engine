@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
 
@@ -10,23 +11,43 @@ import (
 	"github.com/meritlabs/achievement-engine/api/middleware"
 	"github.com/meritlabs/achievement-engine/api/services"
 	"github.com/meritlabs/achievement-engine/db/stores"
+	"github.com/spf13/viper"
 )
 
+func initializeConfig() {
+	viper.SetConfigName("config")
+	viper.AddConfigPath(".") // lookup the config in the working dir
+	viper.SetConfigType("yaml")
+
+	// set explicit app defaults
+	viper.SetDefault("db.connectionString", "localhost")
+
+	viper.SetDefault("blockchain.network", "testnet")
+	viper.SetDefault("blockchain.rpc.host", "localhost")
+	viper.SetDefault("blockchain.rpc.user", "merit")
+	viper.SetDefault("blockchain.rpc.password", "local321")
+
+	if err := viper.ReadInConfig(); err != nil {
+		panic(fmt.Errorf("Error reading config file: %s", err))
+	}
+}
+
 func createStores() *stores.Store {
-	return stores.InitStore()
+	conStr := viper.GetString("db.connectionString")
+	return stores.InitStore(conStr)
 }
 
 func createUserService(store *stores.Store, logger *log.Logger) services.UsersService {
 	Net := chaincfg.Params{
-		Name:             "testnet",
+		Name:             viper.GetString("blockchain.network"),
 		PubKeyHashAddrID: 110,
 		ScriptHashAddrID: 125,
 	}
 
 	BCClient := services.NewClient(
-		"localhost", //viper.GetString("blockchain.rpc.host"),
-		"merit",     //viper.GetString("blockchain.rpc.user"),
-		"local321",  //viper.GetString("blockchain.rpc.password"),
+		viper.GetString("blockchain.rpc.host"),
+		viper.GetString("blockchain.rpc.user"),
+		viper.GetString("blockchain.rpc.password"),
 		logger,
 	)
 
@@ -35,6 +56,8 @@ func createUserService(store *stores.Store, logger *log.Logger) services.UsersSe
 }
 
 func main() {
+	initializeConfig()
+
 	store := createStores()
 	defer store.ShutDownStore()
 
@@ -61,5 +84,5 @@ func main() {
 		}
 	}
 
-	router.Run()
+	router.Run(viper.GetString("port"))
 }

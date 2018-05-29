@@ -4,8 +4,8 @@ import (
 	"github.com/globalsign/mgo"
 )
 
-func WithDBSession() (*mgo.Session, error) {
-	session, err := mgo.Dial("localhost")
+func WithDBSession(connStr string) (*mgo.Session, error) {
+	session, err := mgo.Dial(connStr)
 	if err != nil {
 		return nil, err
 	}

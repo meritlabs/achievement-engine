@@ -4,3 +4,6 @@ achievement-engine-migrations
 
 # Deps
 vendor
+
+# Config
+config.yml
