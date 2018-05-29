@@ -36,3 +36,11 @@
 [[constraint]]
   branch = "master"
   name = "github.com/globalsign/mgo"
+
+[[constraint]]
+  branch = "master"
+  name = "github.com/btcsuite/btcd"
+
+[[constraint]]
+  branch = "master"
+  name = "github.com/btcsuite/btcutil"

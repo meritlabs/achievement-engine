@@ -29,7 +29,26 @@ func UpdateGoals(session *mgo.Session) {
 		Version:     1,
 	}
 
+	var beginnerBrokerConditions []models.GoalCondition
+	beginnerBrokerConditions = append(beginnerBrokerConditions,
+		models.GoalCondition{
+			Name: "Login into market",
+		},
+		models.GoalCondition{
+			Name: "Create one or more BID/ASK",
+		},
+	)
+	beginnerBroker := models.Goal{
+		Slug:        3,
+		Name:        "Beginner brocker",
+		Description: "Teach users how to Buy/Sell MRT via Market",
+		Image:       "",
+		Conditions:  beginnerBrokerConditions,
+		Version:     1,
+	}
+
 	db := session.DB("achievement-engine").C("goals")
 	db.Upsert(bson.M{"slug": whoAmI.Slug}, whoAmI)
 	db.Upsert(bson.M{"slug": backupRookie.Slug}, backupRookie)
+	db.Upsert(bson.M{"slug": beginnerBroker.Slug}, beginnerBroker)
 }

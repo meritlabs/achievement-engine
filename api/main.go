@@ -18,6 +18,12 @@ func main() {
 		{
 			goals.GET("/", controllers.ListGoals)
 		}
+		achievements := apiGroup.Group("/achievements", middleware.Auth)
+		{
+			achievements.GET("/", controllers.ListAchievements)
+			achievements.GET("/:slug", controllers.GetAchievement)
+			achievements.POST("/:slug", controllers.UpdateAchievement)
+		}
 	}
 
 	router.Run()

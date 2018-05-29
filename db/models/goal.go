@@ -2,6 +2,7 @@ package models
 
 import (
 	_ "github.com/globalsign/mgo"
+	"github.com/globalsign/mgo/bson"
 )
 
 type GoalCondition struct {
@@ -9,6 +10,7 @@ type GoalCondition struct {
 }
 
 type Goal struct {
+	ID          bson.ObjectId   `bson:"_id,omitempty" json:"id"`
 	Slug        int             `bson:"slug" json:"slug"`
 	Name        string          `bson:"name" json:"name"`
 	Description string          `bson:"description" json:"description"`
