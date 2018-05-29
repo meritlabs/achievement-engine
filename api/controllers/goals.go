@@ -4,28 +4,17 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/globalsign/mgo/bson"
-	"github.com/meritlabs/achievement-engine/db"
-	"github.com/meritlabs/achievement-engine/db/models"
+	"github.com/meritlabs/achievement-engine/db/stores"
 )
 
-func ListGoals(c *gin.Context) {
-	session, err := db.WithDBSession()
-	if err != nil {
-		c.Error(err)
-		return
+func ListGoals(store *stores.Store) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		goals, err := store.ListGoals()
+		if err != nil {
+			c.Error(err)
+			return
+		}
+
+		c.JSON(http.StatusOK, goals)
 	}
-	defer session.Close()
-
-	db := session.DB("achievement-engine").C("goals")
-
-	var result []models.Goal
-
-	err = db.Find(bson.M{}).All(&result)
-	if err != nil {
-		c.Error(err)
-		return
-	}
-
-	c.JSON(http.StatusOK, result)
 }

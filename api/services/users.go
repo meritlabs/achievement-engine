@@ -24,9 +24,9 @@ const msgMagic = "Merit Signed Message:\n"
 // UsersService
 type UsersService struct {
 	NetParams     chaincfg.Params
+	BCClient      Client
 	UsersStore    stores.UsersStore
 	SessionsStore stores.SessionsStore
-	BCClient      Client
 }
 
 // ParsePubKey returns PublicKey struct from hex
