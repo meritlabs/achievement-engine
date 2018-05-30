@@ -9,6 +9,7 @@ type AchievementsStore interface {
 	GetAchievementsForUser(userID bson.ObjectId) (*[]models.Achievement, error)
 	GetAchievementForUser(userID bson.ObjectId, achivementId bson.ObjectId) (*models.Achievement, error)
 	CopyAchievementsFromGoals(userID bson.ObjectId, goals []models.Goal) (*[]models.Achievement, error)
+	UpdateAchievement(achievement *models.Achievement) error
 }
 
 func (s *Store) GetAchievementsForUser(userID bson.ObjectId) (*[]models.Achievement, error) {
@@ -40,4 +41,9 @@ func (s *Store) CopyAchievementsFromGoals(userID bson.ObjectId, goals []models.G
 	}
 
 	return &achievements, nil
+}
+
+func (s *Store) UpdateAchievement(achievement *models.Achievement) error {
+	err := s.Achievements.Update(bson.M{"_id": achievement.ID}, achievement)
+	return err
 }

@@ -80,7 +80,7 @@ func main() {
 		{
 			achievements.GET("/", controllers.ListAchievements(store))
 			achievements.GET("/:slug", controllers.GetAchievement(store))
-			achievements.POST("/:slug", controllers.UpdateAchievement(store))
+			achievements.POST("/:slug/step/:step/complete", controllers.UpdateAchievement(store))
 		}
 	}
 

@@ -50,6 +50,7 @@ func (a *Achievement) FromGoal(goal *Goal) {
 		ac := AchievementCondition{}
 		ac.FromGoalCondition(&c)
 		conditions = append(conditions, ac)
+		ac.Status = NotStarted
 	}
 	a.Conditions = conditions
 }
