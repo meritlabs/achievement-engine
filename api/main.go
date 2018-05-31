@@ -78,7 +78,7 @@ func main() {
 		{
 			goals.GET("/", controllers.ListGoals(store))
 		}
-		achievements := apiGroup.Group("/achievements", middleware.Auth(userService, logger))
+		achievements := apiGroup.Group("/achievements", middleware.Auth(store, store))
 		{
 			achievements.GET("/", controllers.ListAchievements(store))
 			achievements.GET("/:slug", controllers.GetAchievement(store))

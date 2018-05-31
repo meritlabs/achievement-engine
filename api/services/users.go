@@ -31,7 +31,7 @@ type UsersService struct {
 	AchievementsStore stores.AchievementsStore
 }
 
-// ParsePubKey returns PublicKey struct from hex
+/// NEEW
 func ParsePubKey(pubkeyHex string) (*btcec.PublicKey, error) {
 	// Decode hex-encoded pubkey.
 	pubkeyBytes, err := hex.DecodeString(pubkeyHex)
@@ -127,7 +127,7 @@ func (s *UsersService) CreateUserWithSignature(message, pubkeyHex, signatureHex,
 
 // CreateUserWithPassword create a user with a provided ligin/password pair
 func (s *UsersService) CreateUserWithPassword(username, password string) (*models.User, error) {
-	fmt.Printf("Signup with login/password")
+	fmt.Printf("Signup with login/password\n")
 
 	return nil, nil
 }
@@ -153,7 +153,7 @@ func (s *UsersService) getUserFromBlockchain(user *models.User, pubkey string) e
 		return errors.New("empty pubkey")
 	}
 
-	fmt.Printf("Looking \"%s\" in blockchain", user.MeritAddress)
+	fmt.Printf("Looking \"%s\" in blockchain\n", user.MeritAddress)
 	addressInfo, err := s.BCClient.ValidateAddress(user.MeritAddress)
 
 	if len(addressInfo.Address) == 0 {
