@@ -72,6 +72,8 @@ func main() {
 
 	apiGroup := router.Group("/achivement-engine/api/v1")
 	{
+		apiGroup.POST("/sessions", controllers.CreateSession(userService))
+		
 		goals := apiGroup.Group("/goals")
 		{
 			goals.GET("/", controllers.ListGoals(store))

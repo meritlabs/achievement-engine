@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/meritlabs/achievement-engine/api/models"
+	errors "github.com/meritlabs/achievement-engine/api/models"
 )
 
 // APP error definition
