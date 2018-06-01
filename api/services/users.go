@@ -45,6 +45,7 @@ func ParsePubKey(pubkeyHex string) (*btcec.PublicKey, error) {
 // CheckSignature checks that provided message was signed with the given key
 func CheckSignature(message, pubkeyHex, signatureHex, timestamp string, debug bool) error {
 	msg := message
+	fmt.Printf("MSG: %v\n", msg);
 
 	// append timestamp to the message if not in debug mode.
 	// useful for testing as timestamp changes signature every second
@@ -75,6 +76,7 @@ func CheckSignature(message, pubkeyHex, signatureHex, timestamp string, debug bo
 		return err
 	}
 
+	fmt.Printf("%v %v", pubkey, pk)
 	if !pubkey.IsEqual(pk) {
 		return errors.New("invalid signature")
 	}
@@ -85,6 +87,7 @@ func CheckSignature(message, pubkeyHex, signatureHex, timestamp string, debug bo
 // CreateUserWithSignature creates a user with provided pubkey and signature
 // TODO: replace pubkey with address
 func (s *UsersService) CreateUserWithSignature(message, pubkeyHex, signatureHex, timestamp string, debug bool) (*models.User, error) {
+	fmt.Printf("%v %v %v %v %v \n", message, pubkeyHex, signatureHex, timestamp, debug)
 	if err := CheckSignature(message, pubkeyHex, signatureHex, timestamp, debug); err != nil {
 		return nil, err
 	}

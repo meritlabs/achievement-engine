@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -27,8 +26,12 @@ func CreateSession(s services.UsersService) gin.HandlerFunc {
 
 		user, err = s.CreateUserWithSignature(c.Request.URL.String(), pubkeyHex, signatureHex, timestamp, len(debug) > 0)
 
-		if err != nil || user == nil || user.Status != models.Approved {
-			fmt.Printf("Access denied: err: %v \n user: %v \n", err, user)
+		if err != nil {
+			c.Error(dto.BadRequestError{Message: err.Error()})
+			return
+		}
+
+		if user == nil || user.Status != models.Approved {
 			c.Error(dto.ForbiddenError{})
 			return
 		}
@@ -36,11 +39,10 @@ func CreateSession(s services.UsersService) gin.HandlerFunc {
 		token, err := s.CreateSession(*user)
 
 		if err != nil {
-			fmt.Printf("Access denied: err: %v \n token: %v \n", err, token)
 			c.Error(dto.ForbiddenError{})
 			return
 		}
 
-		c.JSON(http.StatusOK, dto.NewSessionResponseFromModel(token, *user))
+		c.JSON(http.StatusOK, dto.TokenSessionResponse{token})
 	}
 }

@@ -21,15 +21,6 @@ func NewUserResponseFromModel(m models.User) UserResponse {
 	}
 }
 
-type SessionResponse struct {
+type TokenSessionResponse struct {
 	Token string       `json:"token"`
-	User  UserResponse `json:"user"`
-}
-
-// NewSessionResponseFromModel creates json response object
-func NewSessionResponseFromModel(token string, m models.User) SessionResponse {
-	return SessionResponse{
-		Token: token,
-		User:  NewUserResponseFromModel(m),
-	}
 }
