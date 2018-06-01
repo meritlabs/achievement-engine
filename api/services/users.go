@@ -76,7 +76,7 @@ func CheckSignature(message, pubkeyHex, signatureHex, timestamp string, debug bo
 		return err
 	}
 
-	fmt.Printf("%v %v", pubkey, pk)
+	fmt.Printf("%+v %+v", pubkey, pk)
 	if !pubkey.IsEqual(pk) {
 		return errors.New("invalid signature")
 	}
