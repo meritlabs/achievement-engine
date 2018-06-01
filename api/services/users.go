@@ -52,6 +52,7 @@ func CheckSignature(message, pubkeyHex, signatureHex, timestamp string, debug bo
 	if !debug {
 		msg += timestamp
 	}
+	fmt.Printf("MSG AFTER: %v\n", msg);
 
 	var buf bytes.Buffer
 	wire.WriteVarString(&buf, 0, msgMagic)
@@ -103,7 +104,7 @@ func (s *UsersService) CreateUserWithSignature(message, pubkeyHex, signatureHex,
 	addressStr := address.String()
 
 	// Let's look up the user, and insert their information into the context as it flows through the request/response chain.
-	var user models.User
+	user := models.User{MeritAddress: addressStr}
 	if err := s.UsersStore.CreateUserByAddress(addressStr, &user); err != nil {
 		return nil, err
 	}
@@ -156,8 +157,10 @@ func (s *UsersService) getUserFromBlockchain(user *models.User, pubkey string) e
 		return errors.New("empty pubkey")
 	}
 
+	fmt.Printf("USER: %+v", user)
 	fmt.Printf("Looking \"%s\" in blockchain\n", user.MeritAddress)
 	addressInfo, err := s.BCClient.ValidateAddress(user.MeritAddress)
+	fmt.Printf("ADDR: %+v ERR: %+v", addressInfo, err)
 
 	if len(addressInfo.Address) == 0 {
 		return errors.New("user not found in blockchain")

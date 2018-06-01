@@ -36,11 +36,13 @@ func (s *Store) ListUsers() (*[]models.User, error) {
 
 // CreateUser store a user in a db
 func (s *Store) CreateUser(user *models.User) error {
-	return s.Users.Insert(user)
+	_, err := s.Users.Upsert(bson.M{"address": user.MeritAddress}, user)
+	return err
 }
 
 // CreateUserByAddress creates a user by address if not exists
 func (s *Store) CreateUserByAddress(address string, user *models.User) error {
 	_, err := s.Users.Upsert(bson.M{"address": address}, user)
+	s.Users.Find(bson.M{"address": address}).One(&user)
 	return err
 }
