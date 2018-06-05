@@ -6,49 +6,149 @@ import (
 	"github.com/meritlabs/achievement-engine/db/models"
 )
 
-func UpdateGoals(session *mgo.Session) {
-	var whoAmIConditions []models.GoalCondition
-	whoAmIConditions = append(whoAmIConditions, models.GoalCondition{Name: "Find alias and paste into answer field"})
-	whoAmI := models.Goal{
+func UpdateGoals(session *mgo.Session) { 
+	var confirmAnInvite []models.GoalCondition
+	confirmAnInvite = append(confirmAnInvite, models.GoalCondition{Name: "Confirm an invite"})
+	confirmAnInvite := models.Goal{
 		Slug:        1,
-		Name:        "Who am I",
-		Description: "Teach users to find thei aliases and explaixn what is it",
+		Name:        "Confirm an invite",
+		Description: "Confirm an invite",
 		Image:       "",
-		Conditions:  whoAmIConditions,
+		Conditions:  confirmAnInvite,
 		Version:     1,
 	}
 
-	var backupRookieConditions []models.GoalCondition
-	backupRookieConditions = append(backupRookieConditions, models.GoalCondition{Name: "Find mnemonic phrase and paste it into answer field"})
-	backupRookie := models.Goal{
+	var nameYourWallet []models.GoalCondition 
+	nameYourWallet = append(nameYourWallet, models.GoalCondition{Name: "Name Your Wallet"})
+	nameYourWallet := models.Goal{
 		Slug:        2,
-		Name:        "BackUp rookie",
-		Description: "Teach users to backup their wallets",
+		Name:        "Name Your Wallet",
+		Description: "Name Your Wallet",
 		Image:       "",
-		Conditions:  backupRookieConditions,
+		Conditions:  nameYourWallet,
 		Version:     1,
 	}
 
-	var beginnerBrokerConditions []models.GoalCondition
-	beginnerBrokerConditions = append(beginnerBrokerConditions,
-		models.GoalCondition{
-			Name: "Login into market",
-		},
-		models.GoalCondition{
-			Name: "Create one or more BID/ASK",
-		},
-	)
-	beginnerBroker := models.Goal{
+	var hideBalance []models.GoalCondition 
+	hideBalance = append(hideBalance, models.GoalCondition{Name: "Hide your wallet balance for security"})
+	hideBalance := models.Goal{
 		Slug:        3,
-		Name:        "Beginner brocker",
-		Description: "Teach users how to Buy/Sell MRT via Market",
+		Name:        "Hide your wallet balance for security",
+		Description: "Hide your wallet balance for security",
 		Image:       "",
-		Conditions:  beginnerBrokerConditions,
+		Conditions:  hideBalance,
+		Version:     1,
+	}
+
+	var tweetShare []models.GoalCondition 
+	tweetShare = append(tweetShare, models.GoalCondition{Name: "Tweet your invite link"})
+	tweetShare := models.Goal{
+		Slug:        4,
+		Name:        "Tweet your invite link",
+		Description: "Tweet your invite link",
+		Image:       "",
+		Conditions:  tweet,
+		Version:     1,
+	}
+
+	var facebookShare []models.GoalCondition 
+	facebookShare = append(facebookShare, models.GoalCondition{Name: "Share your invite link on Facebook"})
+	facebookShare := models.Goal{
+		Slug:        5,
+		Name:        "Share your invite link on Facebook",
+		Description: "Share your invite link on Facebook",
+		Image:       "",
+		Conditions:  facebookShare,
+		Version:     1,
+	}
+
+	var enableEmailnotifications []models.GoalCondition  
+	enableEmailnotifications = append(enableEmailnotifications, models.GoalCondition{Name: "Enable Email Notifications"})
+	enableEmailnotifications := models.Goal{
+		Slug:        6,
+		Name:        "Enable Email Notifications",
+		Description: "Enable Email Notifications",
+		Image:       "",
+		Conditions:  enableEmailnotifications,
+		Version:     1,
+	}
+
+	var backupPhrase []models.GoalCondition  backupPhrase
+	backupPhrase = append(backupPhrase, models.GoalCondition{Name: "Confirm your backup Phrase"})
+	backupPhrase := models.Goal{
+		Slug:        7,
+		Name:        "Confirm your backup Phrase",
+		Description: "Confirm your backup Phrase",
+		Image:       "",
+		Conditions:  backupPhrase,
+		Version:     1,
+	}
+
+	var backupPhrase []models.GoalCondition  backupPhrase
+	backupPhrase = append(backupPhrase, models.GoalCondition{Name: "Confirm your backup Phrase"})
+	backupPhrase := models.Goal{
+		Slug:        7,
+		Name:        "Confirm your backup Phrase",
+		Description: "Confirm your backup Phrase",
+		Image:       "",
+		Conditions:  backupPhrase,
+		Version:     1,
+	}
+
+	var setPassword []models.GoalCondition  setPassword 
+	setPassword = append(setPassword, models.GoalCondition{Name: "Set a Password"})
+	setPassword := models.Goal{
+		Slug:        8,
+		Name:        "Set a Password",
+		Description: "Set a Password",
+		Image:       "",
+		Conditions:  setPassword,
+		Version:     1,
+	}
+
+	var sendMeritInvite []models.GoalCondition  sendMeritInvite   
+	sendMeritInvite = append(sendMeritInvite, models.GoalCondition{Name: "Send an invite via MeritInvite"})
+	sendMeritInvite := models.Goal{
+		Slug:        9,
+		Name:        "Send an invite via MeritInvite",
+		Description: "Send an invite via MeritInvite",
+		Image:       "",
+		Conditions:  sendMeritInvite,
+		Version:     1,
+	}
+
+	var sendMeritInvite []models.GoalCondition  sendMeritInvite   
+	sendMeritInvite = append(sendMeritInvite, models.GoalCondition{Name: "Send an invite via MeritInvite"})
+	sendMeritInvite := models.Goal{
+		Slug:        9,
+		Name:        "Send an invite via MeritInvite",
+		Description: "Send an invite via MeritInvite",
+		Image:       "",
+		Conditions:  sendMeritInvite,
+		Version:     1,
+	}
+
+	var createInviteWaitlist []models.GoalCondition  createInviteWaitlist
+	createInviteWaitlist = append(createInviteWaitlist, models.GoalCondition{Name: "Add friends to your invite waitlist"})
+	createInviteWaitlist := models.Goal{
+		Slug:        10,
+		Name:        "Add friends to your invite waitlist",
+		Description: "Add friends to your invite waitlist",
+		Image:       "",
+		Conditions:  createInviteWaitlist,
 		Version:     1,
 	}
 
 	db := session.DB("achievement-engine").C("goals")
-	db.Upsert(bson.M{"slug": whoAmI.Slug}, whoAmI)
-	db.Upsert(bson.M{"slug": backupRookie.Slug}, backupRookie)
-	db.Upsert(bson.M{"slug": beginnerBroker.Slug}, beginnerBroker)
+	db.Upsert(bson.M{"slug": confirmAnInvite.Slug}, confirmAnInvite)
+	db.Upsert(bson.M{"slug": nameYourWallet.Slug}, nameYourWallet)
+	db.Upsert(bson.M{"slug": hideBalance.Slug}, hideBalance)
+	db.Upsert(bson.M{"slug": tweetShare.Slug}, tweetShare)
+	db.Upsert(bson.M{"slug": facebookShare.Slug}, facebookShare)
+	db.Upsert(bson.M{"slug": enableEmailnotifications.Slug}, enableEmailnotifications)
+	db.Upsert(bson.M{"slug": backupPhrase.Slug}, backupPhrase)
+	db.Upsert(bson.M{"slug": setPassword.Slug}, setPassword)
+	db.Upsert(bson.M{"slug": sendMeritInvite.Slug}, sendMeritInvite)
+	db.Upsert(bson.M{"slug": createInviteWaitlist.Slug}, createInviteWaitlist)
+	
 }
