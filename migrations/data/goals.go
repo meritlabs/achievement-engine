@@ -6,136 +6,114 @@ import (
 	"github.com/meritlabs/achievement-engine/db/models"
 )
 
-func UpdateGoals(session *mgo.Session) { 
-	var confirmAnInvite []models.GoalCondition
-	confirmAnInvite = append(confirmAnInvite, models.GoalCondition{Name: "Confirm an invite"})
+func UpdateGoals(session *mgo.Session) {
+	var confirmAnInviteConditions []models.GoalCondition
+	confirmAnInviteConditions = append(confirmAnInviteConditions, models.GoalCondition{Name: "Confirm an invite"})
 	confirmAnInvite := models.Goal{
 		Slug:        1,
 		Name:        "Confirm an invite",
 		Description: "Confirm an invite",
 		Image:       "",
-		Conditions:  confirmAnInvite,
+		Conditions:  confirmAnInviteConditions,
 		Version:     1,
 	}
 
-	var nameYourWallet []models.GoalCondition 
-	nameYourWallet = append(nameYourWallet, models.GoalCondition{Name: "Name Your Wallet"})
+	var nameYourWalletConditions []models.GoalCondition
+	nameYourWalletConditions = append(nameYourWalletConditions, models.GoalCondition{Name: "Name Your Wallet"})
 	nameYourWallet := models.Goal{
 		Slug:        2,
 		Name:        "Name Your Wallet",
 		Description: "Name Your Wallet",
 		Image:       "",
-		Conditions:  nameYourWallet,
+		Conditions:  nameYourWalletConditions,
 		Version:     1,
 	}
 
-	var hideBalance []models.GoalCondition 
-	hideBalance = append(hideBalance, models.GoalCondition{Name: "Hide your wallet balance for security"})
+	var hideBalanceConditions []models.GoalCondition
+	hideBalanceConditions = append(hideBalanceConditions, models.GoalCondition{Name: "Hide your wallet balance for security"})
 	hideBalance := models.Goal{
 		Slug:        3,
 		Name:        "Hide your wallet balance for security",
 		Description: "Hide your wallet balance for security",
 		Image:       "",
-		Conditions:  hideBalance,
+		Conditions:  hideBalanceConditions,
 		Version:     1,
 	}
 
-	var tweetShare []models.GoalCondition 
-	tweetShare = append(tweetShare, models.GoalCondition{Name: "Tweet your invite link"})
+	var tweetShareConditions []models.GoalCondition
+	tweetShareConditions = append(tweetShareConditions, models.GoalCondition{Name: "Tweet your invite link"})
 	tweetShare := models.Goal{
 		Slug:        4,
 		Name:        "Tweet your invite link",
 		Description: "Tweet your invite link",
 		Image:       "",
-		Conditions:  tweet,
+		Conditions:  tweetShareConditions,
 		Version:     1,
 	}
 
-	var facebookShare []models.GoalCondition 
-	facebookShare = append(facebookShare, models.GoalCondition{Name: "Share your invite link on Facebook"})
+	var facebookShareConditions []models.GoalCondition
+	facebookShareConditions = append(facebookShareConditions, models.GoalCondition{Name: "Share your invite link on Facebook"})
 	facebookShare := models.Goal{
 		Slug:        5,
 		Name:        "Share your invite link on Facebook",
 		Description: "Share your invite link on Facebook",
 		Image:       "",
-		Conditions:  facebookShare,
+		Conditions:  facebookShareConditions,
 		Version:     1,
 	}
 
-	var enableEmailnotifications []models.GoalCondition  
-	enableEmailnotifications = append(enableEmailnotifications, models.GoalCondition{Name: "Enable Email Notifications"})
+	var enableEmailnotificationsConditions []models.GoalCondition
+	enableEmailnotificationsConditions = append(enableEmailnotificationsConditions, models.GoalCondition{Name: "Enable Email Notifications"})
 	enableEmailnotifications := models.Goal{
 		Slug:        6,
 		Name:        "Enable Email Notifications",
 		Description: "Enable Email Notifications",
 		Image:       "",
-		Conditions:  enableEmailnotifications,
+		Conditions:  enableEmailnotificationsConditions,
 		Version:     1,
 	}
 
-	var backupPhrase []models.GoalCondition  backupPhrase
-	backupPhrase = append(backupPhrase, models.GoalCondition{Name: "Confirm your backup Phrase"})
+	var backupPhraseConditions []models.GoalCondition
+	backupPhraseConditions = append(backupPhraseConditions, models.GoalCondition{Name: "Confirm your backup Phrase"})
 	backupPhrase := models.Goal{
 		Slug:        7,
 		Name:        "Confirm your backup Phrase",
 		Description: "Confirm your backup Phrase",
 		Image:       "",
-		Conditions:  backupPhrase,
+		Conditions:  backupPhraseConditions,
 		Version:     1,
 	}
 
-	var backupPhrase []models.GoalCondition  backupPhrase
-	backupPhrase = append(backupPhrase, models.GoalCondition{Name: "Confirm your backup Phrase"})
-	backupPhrase := models.Goal{
-		Slug:        7,
-		Name:        "Confirm your backup Phrase",
-		Description: "Confirm your backup Phrase",
-		Image:       "",
-		Conditions:  backupPhrase,
-		Version:     1,
-	}
-
-	var setPassword []models.GoalCondition  setPassword 
-	setPassword = append(setPassword, models.GoalCondition{Name: "Set a Password"})
+	var setPasswordConditions []models.GoalCondition
+	setPasswordConditions = append(setPasswordConditions, models.GoalCondition{Name: "Set a Password"})
 	setPassword := models.Goal{
 		Slug:        8,
 		Name:        "Set a Password",
 		Description: "Set a Password",
 		Image:       "",
-		Conditions:  setPassword,
+		Conditions:  setPasswordConditions,
 		Version:     1,
 	}
 
-	var sendMeritInvite []models.GoalCondition  sendMeritInvite   
-	sendMeritInvite = append(sendMeritInvite, models.GoalCondition{Name: "Send an invite via MeritInvite"})
+	var sendMeritInviteConditions []models.GoalCondition
+	sendMeritInviteConditions = append(sendMeritInviteConditions, models.GoalCondition{Name: "Send an invite via MeritInvite"})
 	sendMeritInvite := models.Goal{
 		Slug:        9,
 		Name:        "Send an invite via MeritInvite",
 		Description: "Send an invite via MeritInvite",
 		Image:       "",
-		Conditions:  sendMeritInvite,
+		Conditions:  sendMeritInviteConditions,
 		Version:     1,
 	}
 
-	var sendMeritInvite []models.GoalCondition  sendMeritInvite   
-	sendMeritInvite = append(sendMeritInvite, models.GoalCondition{Name: "Send an invite via MeritInvite"})
-	sendMeritInvite := models.Goal{
-		Slug:        9,
-		Name:        "Send an invite via MeritInvite",
-		Description: "Send an invite via MeritInvite",
-		Image:       "",
-		Conditions:  sendMeritInvite,
-		Version:     1,
-	}
-
-	var createInviteWaitlist []models.GoalCondition  createInviteWaitlist
-	createInviteWaitlist = append(createInviteWaitlist, models.GoalCondition{Name: "Add friends to your invite waitlist"})
+	var createInviteWaitlistConditions []models.GoalCondition
+	createInviteWaitlistConditions = append(createInviteWaitlistConditions, models.GoalCondition{Name: "Add friends to your invite waitlist"})
 	createInviteWaitlist := models.Goal{
 		Slug:        10,
 		Name:        "Add friends to your invite waitlist",
 		Description: "Add friends to your invite waitlist",
 		Image:       "",
-		Conditions:  createInviteWaitlist,
+		Conditions:  createInviteWaitlistConditions,
 		Version:     1,
 	}
 
@@ -150,5 +128,5 @@ func UpdateGoals(session *mgo.Session) {
 	db.Upsert(bson.M{"slug": setPassword.Slug}, setPassword)
 	db.Upsert(bson.M{"slug": sendMeritInvite.Slug}, sendMeritInvite)
 	db.Upsert(bson.M{"slug": createInviteWaitlist.Slug}, createInviteWaitlist)
-	
+
 }
