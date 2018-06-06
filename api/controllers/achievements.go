@@ -13,7 +13,7 @@ import (
 
 func ListAchievements(store *stores.Store) gin.HandlerFunc {
 	return func(c *gin.Context) {
-		user := c.MustGet("user").(models.User)
+		user := c.MustGet("user").(*models.User)
 
 		achievements, err := store.GetAchievementsForUser(user.ID)
 		if err != nil {
@@ -27,7 +27,7 @@ func ListAchievements(store *stores.Store) gin.HandlerFunc {
 
 func GetAchievement(store *stores.Store) gin.HandlerFunc {
 	return func(c *gin.Context) {
-		user := c.MustGet("user").(models.User)
+		user := c.MustGet("user").(*models.User)
 		slug := c.Param("slug")
 
 		if !bson.IsObjectIdHex(slug) {
@@ -47,7 +47,7 @@ func GetAchievement(store *stores.Store) gin.HandlerFunc {
 
 func UpdateAchievement(store *stores.Store) gin.HandlerFunc {
 	return func(c *gin.Context) {
-		user := c.MustGet("user").(models.User)
+		user := c.MustGet("user").(*models.User)
 		slug := c.Param("slug")
 
 		if !bson.IsObjectIdHex(slug) {
