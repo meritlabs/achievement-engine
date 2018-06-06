@@ -45,14 +45,14 @@ func ParsePubKey(pubkeyHex string) (*btcec.PublicKey, error) {
 // CheckSignature checks that provided message was signed with the given key
 func CheckSignature(message, pubkeyHex, signatureHex, timestamp string, debug bool) error {
 	msg := message
-	fmt.Printf("MSG: %v\n", msg);
+	fmt.Printf("MSG: %v\n", msg)
 
 	// append timestamp to the message if not in debug mode.
 	// useful for testing as timestamp changes signature every second
 	if !debug {
 		msg += timestamp
 	}
-	fmt.Printf("MSG AFTER: %v\n", msg);
+	fmt.Printf("MSG AFTER: %v\n", msg)
 
 	var buf bytes.Buffer
 	wire.WriteVarString(&buf, 0, msgMagic)
@@ -114,6 +114,15 @@ func (s *UsersService) CreateUserWithSignature(message, pubkeyHex, signatureHex,
 		if err := s.getUserFromBlockchain(&user, pubkeyHex); err != nil {
 			return nil, err
 		}
+	}
+
+	achievements, err := s.AchievementsStore.GetAchievementsForUser(user.ID)
+	if err != nil {
+		return nil, err
+	}
+
+	if len(*achievements) > 0 {
+		return &user, nil
 	}
 
 	goals, err := s.GoalsStore.ListGoals()
