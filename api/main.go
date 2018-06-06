@@ -51,7 +51,7 @@ func createUserService(store *stores.Store, logger *log.Logger) services.UsersSe
 		logger,
 	)
 
-	usersService := services.UsersService{Net, BCClient, store, store, store, store}
+	usersService := services.UsersService{Net, BCClient, store, store, store, store, store}
 	return usersService
 }
 
@@ -73,7 +73,7 @@ func main() {
 	apiGroup := router.Group("/achivement-engine/api/v1")
 	{
 		apiGroup.POST("/sessions", controllers.CreateSession(userService))
-		
+
 		goals := apiGroup.Group("/goals")
 		{
 			goals.GET("/", controllers.ListGoals(store))
@@ -83,6 +83,12 @@ func main() {
 			achievements.GET("/", controllers.ListAchievements(store))
 			achievements.GET("/:slug", controllers.GetAchievement(store))
 			achievements.POST("/:slug/step/:step/complete", controllers.UpdateAchievement(store))
+		}
+		settings := apiGroup.Group("/settings", middleware.Auth(store, store))
+		{
+			settings.GET("/", controllers.GetSettings(store))
+			settings.POST("/", controllers.UpdateSettings(store))
+			settings.PUT("/", controllers.UpdateSettings(store))
 		}
 	}
 

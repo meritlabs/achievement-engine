@@ -1,4 +1,4 @@
-package models
+package dto
 
 import (
 	"github.com/globalsign/mgo/bson"
@@ -6,10 +6,10 @@ import (
 )
 
 type UserResponse struct {
-	ID      bson.ObjectId    `json:"id"`
-	Address string  `json:"address"`
-	Alias   string  `json:"alias"`
-	Rating  float32 `json:"rating,omitempty"`
+	ID      bson.ObjectId `json:"id"`
+	Address string        `json:"address"`
+	Alias   string        `json:"alias"`
+	Rating  float32       `json:"rating,omitempty"`
 }
 
 // NewUserResponseFromModel creates json response object
@@ -22,5 +22,5 @@ func NewUserResponseFromModel(m models.User) UserResponse {
 }
 
 type TokenSessionResponse struct {
-	Token string       `json:"token"`
+	Token string `json:"token"`
 }

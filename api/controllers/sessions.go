@@ -4,9 +4,9 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/meritlabs/achievement-engine/db/models"
-	dto "github.com/meritlabs/achievement-engine/api/models"
+	"github.com/meritlabs/achievement-engine/api/dto"
 	"github.com/meritlabs/achievement-engine/api/services"
+	"github.com/meritlabs/achievement-engine/db/models"
 )
 
 func CreateSession(s services.UsersService) gin.HandlerFunc {

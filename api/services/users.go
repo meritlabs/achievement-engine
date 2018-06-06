@@ -29,6 +29,7 @@ type UsersService struct {
 	SessionsStore     stores.SessionsStore
 	GoalsStore        stores.GoalsStore
 	AchievementsStore stores.AchievementsStore
+	SettingsStore     stores.SettingsStore
 }
 
 /// NEEW
@@ -116,24 +117,7 @@ func (s *UsersService) CreateUserWithSignature(message, pubkeyHex, signatureHex,
 		}
 	}
 
-	achievements, err := s.AchievementsStore.GetAchievementsForUser(user.ID)
-	if err != nil {
-		return nil, err
-	}
-
-	if len(*achievements) > 0 {
-		return &user, nil
-	}
-
-	goals, err := s.GoalsStore.ListGoals()
-	if err != nil {
-		return nil, err
-	}
-
-	_, err = s.AchievementsStore.CopyAchievementsFromGoals(user.ID, goals)
-	if err != nil {
-		return nil, err
-	}
+	s.setUpUserData(&user)
 
 	return &user, nil
 }
@@ -195,4 +179,36 @@ func (s *UsersService) getUserFromBlockchain(user *models.User, pubkey string) e
 	user.PublicKey = pubkey
 
 	return s.UsersStore.CreateUser(user)
+}
+
+func (s *UsersService) setUpUserData(user *models.User) error {
+	settings, err := s.SettingsStore.GetUserSettings(user.ID)
+	if err != nil {
+		return err
+	}
+
+	if settings == nil {
+		s.SettingsStore.CreateUserSettings(user.ID)
+	}
+
+	achievements, err := s.AchievementsStore.GetAchievementsForUser(user.ID)
+	if err != nil {
+		return err
+	}
+
+	if len(*achievements) > 0 {
+		return nil
+	}
+
+	goals, err := s.GoalsStore.ListGoals()
+	if err != nil {
+		return err
+	}
+
+	_, err = s.AchievementsStore.CopyAchievementsFromGoals(user.ID, goals)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }

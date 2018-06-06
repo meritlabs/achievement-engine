@@ -12,6 +12,7 @@ type Store struct {
 	Goals        *mgo.Collection
 	Users        *mgo.Collection
 	Sessions     *mgo.Collection
+	Settings     *mgo.Collection
 }
 
 func InitStore(connStr string) *Store {
@@ -26,6 +27,7 @@ func InitStore(connStr string) *Store {
 	goals := db.C("goals")
 	users := db.C("users")
 	sessions := db.C("sessions")
+	settings := db.C("settings")
 
 	return &Store{
 		session:      session,
@@ -33,6 +35,7 @@ func InitStore(connStr string) *Store {
 		Goals:        goals,
 		Users:        users,
 		Sessions:     sessions,
+		Settings:     settings,
 	}
 }
 
