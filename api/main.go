@@ -70,7 +70,7 @@ func main() {
 	router.Use(middleware.CORSMiddleware())
 	router.Use(middleware.JSONErrorReporter())
 
-	apiGroup := router.Group("/achivement-engine/api/v1")
+	apiGroup := router.Group("/achievement-engine/api/v1")
 	{
 		apiGroup.POST("/sessions", controllers.CreateSession(userService))
 
