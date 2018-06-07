@@ -46,14 +46,12 @@ func ParsePubKey(pubkeyHex string) (*btcec.PublicKey, error) {
 // CheckSignature checks that provided message was signed with the given key
 func CheckSignature(message, pubkeyHex, signatureHex, timestamp string, debug bool) error {
 	msg := message
-	fmt.Printf("MSG: %v\n", msg)
 
 	// append timestamp to the message if not in debug mode.
 	// useful for testing as timestamp changes signature every second
 	if !debug {
 		msg += timestamp
 	}
-	fmt.Printf("MSG AFTER: %v\n", msg)
 
 	var buf bytes.Buffer
 	wire.WriteVarString(&buf, 0, msgMagic)
@@ -78,7 +76,6 @@ func CheckSignature(message, pubkeyHex, signatureHex, timestamp string, debug bo
 		return err
 	}
 
-	fmt.Printf("%+v %+v", pubkey, pk)
 	if !pubkey.IsEqual(pk) {
 		return errors.New("invalid signature")
 	}
@@ -89,7 +86,6 @@ func CheckSignature(message, pubkeyHex, signatureHex, timestamp string, debug bo
 // CreateUserWithSignature creates a user with provided pubkey and signature
 // TODO: replace pubkey with address
 func (s *UsersService) CreateUserWithSignature(message, pubkeyHex, signatureHex, timestamp string, debug bool) (*models.User, error) {
-	fmt.Printf("%v %v %v %v %v \n", message, pubkeyHex, signatureHex, timestamp, debug)
 	if err := CheckSignature(message, pubkeyHex, signatureHex, timestamp, debug); err != nil {
 		return nil, err
 	}
@@ -150,10 +146,7 @@ func (s *UsersService) getUserFromBlockchain(user *models.User, pubkey string) e
 		return errors.New("empty pubkey")
 	}
 
-	fmt.Printf("USER: %+v", user)
-	fmt.Printf("Looking \"%s\" in blockchain\n", user.MeritAddress)
 	addressInfo, err := s.BCClient.ValidateAddress(user.MeritAddress)
-	fmt.Printf("ADDR: %+v ERR: %+v", addressInfo, err)
 
 	if len(addressInfo.Address) == 0 {
 		return errors.New("user not found in blockchain")
@@ -183,7 +176,6 @@ func (s *UsersService) getUserFromBlockchain(user *models.User, pubkey string) e
 
 func (s *UsersService) setUpUserData(user *models.User) error {
 	settings, err := s.SettingsStore.GetUserSettings(user.ID)
-	fmt.Printf("setUpUserData: %+v %+v \n", settings, err)
 	if err != nil {
 		return err
 	}

@@ -6,7 +6,6 @@ import (
 	"errors"
 	"io/ioutil"
 	"net/http"
-	"fmt"
 )
 
 // Result of `validateaddress` call
@@ -93,16 +92,11 @@ func (c *Client) exec(method string, res interface{}, params ...interface{}) err
 
 	marshalledJSON, err := json.Marshal(rawRequest)
 
-	fmt.Printf("URL: %+v\n", c.url)
-
 	req, err := http.NewRequest("POST", c.url, bytes.NewBuffer(marshalledJSON))
 	req.SetBasicAuth(c.user, c.password)
 
-	fmt.Printf("REQ %+v\n", req)
-
 	client := &http.Client{}
 	resp, err := client.Do(req)
-	fmt.Printf("RESP: %+v ERR: %+v\n", resp, err)
 	if err != nil {
 		return err
 	}
@@ -112,11 +106,9 @@ func (c *Client) exec(method string, res interface{}, params ...interface{}) err
 
 	var out rawResponse
 	if err := json.Unmarshal(bodyBytes, &out); err != nil {
-		fmt.Printf("ERR: %+v\n", err);
 		return err
 	}
-	fmt.Printf("OUT: %+v\n ERR: %+v\n", out, err);
-	
+
 	if out.Error != "" {
 		return errors.New(out.Error)
 	}
