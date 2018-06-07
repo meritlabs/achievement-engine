@@ -183,6 +183,7 @@ func (s *UsersService) getUserFromBlockchain(user *models.User, pubkey string) e
 
 func (s *UsersService) setUpUserData(user *models.User) error {
 	settings, err := s.SettingsStore.GetUserSettings(user.ID)
+	fmt.Printf("setUpUserData: %+v %+v \n", settings, err)
 	if err != nil {
 		return err
 	}
