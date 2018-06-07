@@ -8,17 +8,17 @@ import (
 
 func UpdateGoals(session *mgo.Session) {
 
-	var createFirstWallet []models.GoalCondition
-	createFirstWallet = append(createFirstWallet, models.GoalCondition{Name: "Create Wallet"})
+	var createFirstWalletConditions []models.GoalCondition
+	createFirstWalletConditions = append(createFirstWalletConditions, models.GoalCondition{Name: "Create Wallet"})
 	createFirstWallet := models.Goal{
 		Slug:        0,
-		Route: 			 "wallets",
+		Route:			 "wallets",
 		Name:        "Create Wallet",
 		Description: "Create your first wallet",
 		Title:			 "Create",
 		LinkTitle:	 "Wallet",
 		Image:       "",
-		Conditions:  createFirstWallet,
+		Conditions:  createFirstWalletConditions,
 		Version:     1,
 	}
 
@@ -26,7 +26,7 @@ func UpdateGoals(session *mgo.Session) {
 	nameYourWalletConditions = append(nameYourWalletConditions, models.GoalCondition{Name: "Name Your Wallet"})
 	nameYourWallet := models.Goal{
 		Slug:        1,
-		Route: 			 "wallets",
+		Route:			 "wallets",
 		Name:        "Name Your Wallet",
 		Description: "For better experiance you can rename your wallet",
 		Title:			 "Name Your",
@@ -40,7 +40,7 @@ func UpdateGoals(session *mgo.Session) {
 	hideBalanceConditions = append(hideBalanceConditions, models.GoalCondition{Name: "Hide your wallet balance"})
 	hideBalance := models.Goal{
 		Slug:        2,
-		Route: 			 "wallets",
+		Route:			 "wallets",
 		Name:        "Hide your wallet balance",
 		Description: "Hide your wallet balance for security",
 		Title:			 "Hide your",
@@ -54,10 +54,10 @@ func UpdateGoals(session *mgo.Session) {
 	confirmAnInviteConditions = append(confirmAnInviteConditions, models.GoalCondition{Name: "Share your invite code"})
 	confirmAnInvite := models.Goal{
 		Slug:        3,
-		Route: 			 "invite-action",
+		Route:			 "invite-action",
 		Name:        "Share your invite code",
 		Description: "Spread to the World your invite code and exted your community...",
-		Title				 "Share your",
+		Title:				 "Share your",
 		LinkTitle:	 "invite code",
 		Image:       "",
 		Conditions:  confirmAnInviteConditions,
@@ -68,7 +68,7 @@ func UpdateGoals(session *mgo.Session) {
 	createInviteWaitlistConditions = append(createInviteWaitlistConditions, models.GoalCondition{Name: "Add friends to your invite waitlist"})
 	createInviteWaitlist := models.Goal{
 		Slug:        4,
-		Route: 			 "invites/requests",
+		Route:			 "invites/requests",
 		Name:        "Add friends to your invite waitlist",
 		Description: "Add friends to your invite waitlist",
 		Title:			 "Add friends to your",
@@ -82,10 +82,10 @@ func UpdateGoals(session *mgo.Session) {
 	backupPhraseConditions = append(backupPhraseConditions, models.GoalCondition{Name: "Confirm your backup Phrase"})
 	backupPhrase := models.Goal{
 		Slug:        5,
-		Route: 			 "wallets",
+		Route:			 "wallets",
 		Name:        "Confirm your backup Phrase",
 		Description: "Wallet Backup Phrase it's easiest way to ",
-		Title				 "Confirm your",
+		Title:				 "Confirm your",
 		LinkTitle:	 "backup Phrase",
 		Image:       "",
 		Conditions:  backupPhraseConditions,
@@ -96,7 +96,7 @@ func UpdateGoals(session *mgo.Session) {
 	setPasswordConditions = append(setPasswordConditions, models.GoalCondition{Name: "Set a advanced Wallet Password"})
 	setPassword := models.Goal{
 		Slug:        6,
-		Route: 			 "wallets",
+		Route:			 "wallets",
 		Name:        "Set a advanced Wallet Password",
 		Description: "We are very care about your security, you can setup advanced password for protect your Wallet Backup Phrase",
 		Title:			 "Set a advanced",
@@ -110,7 +110,7 @@ func UpdateGoals(session *mgo.Session) {
 	enableEmailnotificationsConditions = append(enableEmailnotificationsConditions, models.GoalCondition{Name: "Enable Email Notifications"})
 	enableEmailnotifications := models.Goal{
 		Slug:        7,
-		Route: 			 "settings",
+		Route:			 "settings",
 		Name:        "Enable Email Notifications",
 		Description: "Enable Email Notifications",
 		Title:			 "Enable",
@@ -120,7 +120,7 @@ func UpdateGoals(session *mgo.Session) {
 		Version:     1,
 	}
 
-	
+
 
 	db := session.DB("achievement-engine").C("goals")
 	db.Upsert(bson.M{"slug": createFirstWallet.Slug}, createFirstWallet)
@@ -130,7 +130,6 @@ func UpdateGoals(session *mgo.Session) {
 	db.Upsert(bson.M{"slug": enableEmailnotifications.Slug}, enableEmailnotifications)
 	db.Upsert(bson.M{"slug": backupPhrase.Slug}, backupPhrase)
 	db.Upsert(bson.M{"slug": setPassword.Slug}, setPassword)
-	db.Upsert(bson.M{"slug": sendMeritInvite.Slug}, sendMeritInvite)
 	db.Upsert(bson.M{"slug": createInviteWaitlist.Slug}, createInviteWaitlist)
 
 }
