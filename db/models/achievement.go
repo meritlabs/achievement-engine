@@ -28,8 +28,11 @@ type Achievement struct {
 	GoalID      bson.ObjectId          `bson:"goalId" json:"goalId"`
 	UserID      bson.ObjectId          `bson:"userId" json:"userId"`
 	Slug        int                    `bson:"slug" json:"slug"`
+	Route       string                 `bson:"route" json:"route"`
 	Name        string                 `bson:"name" json:"name"`
 	Description string                 `bson:"description" json:"description"`
+	Title       string                 `bson:"title" json:"title"`
+	LinkTitle   string                 `bson:"linkTitle" json:"linkTitle"`
 	Image       string                 `bson:"image" json:"image"`
 	Conditions  []AchievementCondition `bson:"conditions" json:"conditions"`
 	Version     int                    `bson:"version" json:"version"`
@@ -38,8 +41,11 @@ type Achievement struct {
 
 func (a *Achievement) FromGoal(goal *Goal) {
 	a.Slug = goal.Slug
+	a.Route = goal.Route
 	a.Name = goal.Name
 	a.Description = goal.Description
+	a.Title = goal.Title
+	a.LinkTitle = goal.LinkTitle
 	a.GoalID = goal.ID
 	a.Image = goal.Image
 	a.Version = goal.Version
