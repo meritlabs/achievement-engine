@@ -31,6 +31,6 @@ func (s *Store) CreateUserSettings(userID bson.ObjectId) error {
 func (s *Store) UpdateUserSettings(userID bson.ObjectId, settings *models.Settings) error {
 	return s.Settings.Update(
 		bson.M{"userId": userID},
-		bson.M{"$set": bson.M{"isSetupTrackerEnabled": settings.IsSetupTrackerEnabled}},
+		bson.M{"$set": bson.M{"isSetupTrackerEnabled": settings.IsSetupTrackerEnabled, "isWelcomeDialogEnabled": settings.IsWelcomeDialogEnabled}},
 	)
 }

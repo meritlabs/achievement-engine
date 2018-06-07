@@ -6,14 +6,16 @@ import (
 )
 
 type Settings struct {
-	ID                    bson.ObjectId `bson:"_id,omitempty" json:"id"`
-	UserID                bson.ObjectId `bson:"userId" json:"userId"`
-	IsSetupTrackerEnabled bool          `bson:"isSetupTrackerEnabled" json:"isSetupTrackerEnabled"`
+	ID                     bson.ObjectId `bson:"_id,omitempty" json:"id"`
+	UserID                 bson.ObjectId `bson:"userId" json:"userId"`
+	IsSetupTrackerEnabled  bool          `bson:"isSetupTrackerEnabled" json:"isSetupTrackerEnabled"`
+	IsWelcomeDialogEnabled bool          `bson:"isWelcomeDialogEnabled" json:"isWelcomeDialogEnabled"`
 }
 
 func DefaultSettings(userId bson.ObjectId) *Settings {
 	return &Settings{
-		UserID:                userId,
-		IsSetupTrackerEnabled: true,
+		UserID:                 userId,
+		IsSetupTrackerEnabled:  true,
+		IsWelcomeDialogEnabled: true,
 	}
 }

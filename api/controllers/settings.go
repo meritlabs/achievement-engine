@@ -31,8 +31,9 @@ func UpdateSettings(store *stores.Store) gin.HandlerFunc {
 		c.BindJSON(&payload)
 
 		settings := models.Settings{
-			UserID:                user.ID,
-			IsSetupTrackerEnabled: payload.IsSetupTrackerEnabled,
+			UserID:                 user.ID,
+			IsSetupTrackerEnabled:  payload.IsSetupTrackerEnabled,
+			IsWelcomeDialogEnabled: payload.IsWelcomeDialogEnabled,
 		}
 
 		if err := store.UpdateUserSettings(user.ID, &settings); err != nil {
