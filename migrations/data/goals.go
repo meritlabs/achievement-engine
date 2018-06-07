@@ -85,6 +85,8 @@ func UpdateGoals(session *mgo.Session) {
 		Route: 			 "wallets",
 		Name:        "Confirm your backup Phrase",
 		Description: "Wallet Backup Phrase it's easiest way to ",
+		Title				 "Confirm your",
+		LinkTitle:	 "backup Phrase",
 		Image:       "",
 		Conditions:  backupPhraseConditions,
 		Version:     1,
