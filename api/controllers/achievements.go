@@ -68,14 +68,18 @@ func UpdateAchievement(store *stores.Store) gin.HandlerFunc {
 		}
 
 		completed := true
+		var conditions []models.AchievementCondition
 		for _, condition := range achievement.Conditions {
 			if condition.Slug == step {
 				condition.Status = models.Done
 			}
-			if condition.Slug != models.Done {
+			if condition.Status != models.Done {
 				completed = false
 			}
+			conditions = append(conditions, condition)
 		}
+
+		achievement.Conditions = conditions
 
 		if completed {
 			achievement.Status = models.Done

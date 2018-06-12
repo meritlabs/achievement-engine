@@ -198,7 +198,6 @@ func (s *UsersService) setUpUserData(user *models.User) error {
 		return err
 	}
 
-	fmt.Printf("CopyAchievementsFromGoals\n")
 	_, err = s.AchievementsStore.CopyAchievementsFromGoals(user.ID, goals)
 	if err != nil {
 		return err

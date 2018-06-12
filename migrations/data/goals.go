@@ -92,7 +92,7 @@ func UpdateGoals(session *mgo.Session) {
 	growthMasterConditions = append(growthMasterConditions, models.GoalCondition{
 		Name:        "Earn your first Growth Reward",
 		Description: "Merit believes in rewarding community members for growing the network. Adding active users who mine, sell, and invite others will help you earn more Growth Rewards.",
-		GoalSlug:    1,
+		Slug:        1,
 	})
 	growthMaster := models.Goal{
 		Slug:        4,
@@ -105,8 +105,8 @@ func UpdateGoals(session *mgo.Session) {
 
 	db := session.DB("achievement-engine").C("goals")
 	db.Upsert(bson.M{"slug": creator.Slug}, creator)
-	db.Upsert(bson.M{"slug": fastStarter.Slug}, creator)
-	db.Upsert(bson.M{"slug": tycoon.Slug}, creator)
-	db.Upsert(bson.M{"slug": growthMaster.Slug}, creator)
+	db.Upsert(bson.M{"slug": fastStarter.Slug}, fastStarter)
+	db.Upsert(bson.M{"slug": tycoon.Slug}, tycoon)
+	db.Upsert(bson.M{"slug": growthMaster.Slug}, growthMaster)
 
 }
