@@ -15,7 +15,6 @@ type GoalCondition struct {
 type Goal struct {
 	ID          bson.ObjectId   `bson:"_id,omitempty" json:"id"`
 	Slug        int             `bson:"slug" json:"slug"`
-	Route       string          `bson:"route" json:"route"`
 	Name        string          `bson:"name" json:"name"`
 	Description string          `bson:"description" json:"description"`
 	Image       string          `bson:"image" json:"image"`

@@ -8,110 +8,94 @@ import (
 
 func UpdateGoals(session *mgo.Session) {
 
-	var createFirstWalletConditions []models.GoalCondition
-	createFirstWalletConditions = append(createFirstWalletConditions, models.GoalCondition{Name: "Create Wallet"})
-	createFirstWallet := models.Goal{
+	var creatorConditions []models.GoalCondition
+	creatorConditions = append(creatorConditions, models.GoalCondition{
+		Name:        "Create wallet",
+		Description: "",
+		GoalSlug:    0})
+	creatorConditions = append(creatorConditions, models.GoalCondition{
+		Name:        "Unlock wallet",
+		Description: "",
+		GoalSlug:    1})
+	creator := models.Goal{
+		Slug:        0,
+		Name:        "Creator",
+		Description: "Create and unlock your first wallet.",
+		Image:       "achi-creator",
+		Conditions:  creatorConditions,
+		Version:     1,
+	}
+
+	var fastStarterConditions []models.GoalCondition
+	fastStarterConditions = append(fastStarterConditions, models.GoalCondition{
+		Name:        "Invite Your Friends to Merit!",
+		Description: "Share your alias with your friends!  Your alias can be used as their invite code when they create a wallet.",
+		GoalSlug:    0})
+	fastStarterConditions = append(fastStarterConditions, models.GoalCondition{
+		Name:        "Add a friend to your invite waitlist",
+		Description: "You can populate your invite waitlist at any time, even when you don’t have available invites! Just share your alias with your friends and have them use it as their invite code when they create their Merit Wallet.",
+		GoalSlug:    1})
+	fastStarterConditions = append(fastStarterConditions, models.GoalCondition{
+		Name:        "Mine an invite",
+		Description: "Invites are randomly distributed among the Merit community with every block that is mined.  Keep an eye out for new invites in your wallet!",
+		GoalSlug:    2})
+	fastStarterConditions = append(fastStarterConditions, models.GoalCondition{
+		Name:        "Confirm an invite request",
+		Description: "Confirm the invite requests pending in your invite waitlist! Remember, invites are scarce!",
+		GoalSlug:    3})
+	fastStarter := models.Goal{
 		Slug:        1,
-		Route:       "wallets",
-		Name:        "Create Wallet",
-		Description: "Create your first wallet",
-		Image:       "",
-		Conditions:  createFirstWalletConditions,
+		Name:        "Fast Starter",
+		Description: "Create and unlock your first wallet.",
+		Image:       "achi-start",
+		Conditions:  fastStarterConditions,
 		Version:     1,
 	}
 
-	var nameYourWalletConditions []models.GoalCondition
-	nameYourWalletConditions = append(nameYourWalletConditions, models.GoalCondition{Name: "Name Your Wallet"})
-	nameYourWallet := models.Goal{
+	var tycoonConditions []models.GoalCondition
+	tycoonConditions = append(tycoonConditions, models.GoalCondition{
+		Name:        "Send a friend Merit using MeritMoney",
+		Description: "MeritMoney lets you add a password to the transaction or cancel it at any time up until the transaction is accepted. ",
+		GoalSlug:    0})
+	tycoonConditions = append(tycoonConditions, models.GoalCondition{
+		Name:        "Chat with the Merit team on Discord or Telegram",
+		Description: "Join us on Discord or Telegram to hear about the latest updates, news, and get answers to any questions you might have about Merit.",
+		GoalSlug:    1})
+	tycoonConditions = append(tycoonConditions, models.GoalCondition{
+		Name:        "Receive merit from friend or community",
+		Description: "Your balance should be more than 1MRT.",
+		GoalSlug:    2})
+	tycoonConditions = append(tycoonConditions, models.GoalCondition{
+		Name:        "Get SMS notifications",
+		Description: "We can text you and let you know when you get new invites and when you receive MRT.  Just add your number.  ",
+		GoalSlug:    3})
+	tycoon := models.Goal{
 		Slug:        2,
-		Route:       "wallets",
-		Name:        "Name Your Wallet",
-		Description: "For better experiance you can rename your wallet",
-		Image:       "",
-		Conditions:  nameYourWalletConditions,
+		Name:        "Merit Tycoon",
+		Description: "Do more activity in the Merit World",
+		Image:       "achi-tycoon",
+		Conditions:  tycoonConditions,
 		Version:     1,
 	}
 
-	var hideBalanceConditions []models.GoalCondition
-	hideBalanceConditions = append(hideBalanceConditions, models.GoalCondition{Name: "Hide your wallet balance"})
-	hideBalance := models.Goal{
+	var growthMasterConditions []models.GoalCondition
+	growthMasterConditions = append(growthMasterConditions, models.GoalCondition{
+		Name:        "Earn your first Growth Reward",
+		Description: "Merit believes in rewarding community members for growing the network.  Adding active users who mine, sell, and invite others will help you earn more Growth Rewards.",
+		GoalSlug:    0})
+	growthMaster := models.Goal{
 		Slug:        3,
-		Route:       "wallets",
-		Name:        "Hide your wallet balance",
-		Description: "Hide your wallet balance for security",
-		Image:       "",
-		Conditions:  hideBalanceConditions,
-		Version:     1,
-	}
-
-	var confirmAnInviteConditions []models.GoalCondition
-	confirmAnInviteConditions = append(confirmAnInviteConditions, models.GoalCondition{Name: "Share your invite code"})
-	confirmAnInvite := models.Goal{
-		Slug:        4,
-		Route:       "invite-action",
-		Name:        "Share your invite code",
-		Description: "Spread to the World your invite code and exted your community...",
-		Image:       "",
-		Conditions:  confirmAnInviteConditions,
-		Version:     1,
-	}
-
-	var createInviteWaitlistConditions []models.GoalCondition
-	createInviteWaitlistConditions = append(createInviteWaitlistConditions, models.GoalCondition{Name: "Add friends to your invite waitlist"})
-	createInviteWaitlist := models.Goal{
-		Slug:        5,
-		Route:       "invites/requests",
-		Name:        "Add friends to your invite waitlist",
-		Description: "Add friends to your invite waitlist",
-		Image:       "",
-		Conditions:  createInviteWaitlistConditions,
-		Version:     1,
-	}
-
-	var backupPhraseConditions []models.GoalCondition
-	backupPhraseConditions = append(backupPhraseConditions, models.GoalCondition{Name: "Confirm your backup Phrase"})
-	backupPhrase := models.Goal{
-		Slug:        6,
-		Route:       "wallets",
-		Name:        "Confirm your backup Phrase",
-		Description: "Wallet Backup Phrase it's easiest way to ",
-		Image:       "",
-		Conditions:  backupPhraseConditions,
-		Version:     1,
-	}
-
-	var setPasswordConditions []models.GoalCondition
-	setPasswordConditions = append(setPasswordConditions, models.GoalCondition{Name: "Set a advanced Wallet Password"})
-	setPassword := models.Goal{
-		Slug:        7,
-		Route:       "wallets",
-		Name:        "Set a advanced Wallet Password",
-		Description: "We are very care about your security, you can setup advanced password for protect your Wallet Backup Phrase",
-		Image:       "",
-		Conditions:  setPasswordConditions,
-		Version:     1,
-	}
-
-	var enableEmailnotificationsConditions []models.GoalCondition
-	enableEmailnotificationsConditions = append(enableEmailnotificationsConditions, models.GoalCondition{Name: "Enable Email Notifications"})
-	enableEmailnotifications := models.Goal{
-		Slug:        8,
-		Route:       "settings",
-		Name:        "Enable Email Notifications",
-		Description: "Enable Email Notifications",
-		Image:       "",
-		Conditions:  enableEmailnotificationsConditions,
+		Name:        "Growth Master",
+		Description: "Growth your community!",
+		Image:       "achi-growth-master",
+		Conditions:  growthMasterConditions,
 		Version:     1,
 	}
 
 	db := session.DB("achievement-engine").C("goals")
-	db.Upsert(bson.M{"slug": createFirstWallet.Slug}, createFirstWallet)
-	db.Upsert(bson.M{"slug": confirmAnInvite.Slug}, confirmAnInvite)
-	db.Upsert(bson.M{"slug": nameYourWallet.Slug}, nameYourWallet)
-	db.Upsert(bson.M{"slug": hideBalance.Slug}, hideBalance)
-	db.Upsert(bson.M{"slug": enableEmailnotifications.Slug}, enableEmailnotifications)
-	db.Upsert(bson.M{"slug": backupPhrase.Slug}, backupPhrase)
-	db.Upsert(bson.M{"slug": setPassword.Slug}, setPassword)
-	db.Upsert(bson.M{"slug": createInviteWaitlist.Slug}, createInviteWaitlist)
+	db.Upsert(bson.M{"slug": creator.Slug}, creator)
+	db.Upsert(bson.M{"slug": fastStarter.Slug}, creator)
+	db.Upsert(bson.M{"slug": tycoon.Slug}, creator)
+	db.Upsert(bson.M{"slug": growthMaster.Slug}, creator)
 
 }
