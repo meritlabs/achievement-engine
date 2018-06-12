@@ -17,12 +17,14 @@ type AchievementCondition struct {
 	Status        int    `bson:"status" json:"status"`
 	GoalSlug      int    `bson:"goalSlug" json:"goalSlug"`
 	AchievementID string `bson:"achievementId" json:"achievementId"`
+	Description   string `bson:"description" json:"description"`
 }
 
 func (ac *AchievementCondition) FromGoalCondition(gc *GoalCondition) {
 	ac.Name = gc.Name
 	ac.Slug = gc.Slug
 	ac.GoalSlug = gc.GoalSlug
+	ac.Description = gc.Description
 	ac.Status = NotStarted
 	ac.AchievementID = ""
 }
@@ -32,7 +34,6 @@ type Achievement struct {
 	GoalID          bson.ObjectId          `bson:"goalId" json:"goalId"`
 	UserID          bson.ObjectId          `bson:"userId" json:"userId"`
 	Slug            int                    `bson:"slug" json:"slug"`
-	Route           string                 `bson:"route" json:"route"`
 	Name            string                 `bson:"name" json:"name"`
 	Description     string                 `bson:"description" json:"description"`
 	Image           string                 `bson:"image" json:"image"`
@@ -44,7 +45,6 @@ type Achievement struct {
 
 func (a *Achievement) FromGoal(goal *Goal) {
 	a.Slug = goal.Slug
-	a.Route = goal.Route
 	a.Name = goal.Name
 	a.Description = goal.Description
 	a.GoalID = goal.ID
