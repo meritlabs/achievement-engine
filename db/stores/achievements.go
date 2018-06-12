@@ -26,6 +26,7 @@ func (s *Store) GetAchievementForUser(userID bson.ObjectId, achivementId bson.Ob
 
 func (s *Store) CopyAchievementsFromGoals(userID bson.ObjectId, goals []models.Goal) (*[]models.Achievement, error) {
 	var achievements []models.Achievement
+	goalsToAchievements := make(map[int]bson.ObjectId)
 	for _, goal := range goals {
 		a := models.Achievement{}
 		a.FromGoal(&goal)
@@ -37,7 +38,21 @@ func (s *Store) CopyAchievementsFromGoals(userID bson.ObjectId, goals []models.G
 			return nil, err
 		}
 
+		goalsToAchievements[goal.Slug] = a.ID
 		achievements = append(achievements, a)
+	}
+
+	for _, a := range achievements {
+		if a.HasAchievements {
+			for _, c := range a.Conditions {
+				c.AchievementID = goalsToAchievements[c.GoalSlug].Hex()
+			}
+
+			err := s.UpdateAchievement(&a)
+			if err != nil {
+				return nil, err
+			}
+		}
 	}
 
 	return &achievements, nil
