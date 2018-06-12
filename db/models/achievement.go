@@ -23,6 +23,7 @@ func (ac *AchievementCondition) FromGoalCondition(gc *GoalCondition) {
 	ac.Name = gc.Name
 	ac.Slug = gc.Slug
 	ac.GoalSlug = gc.GoalSlug
+	ac.Description = gc.Description
 	ac.Status = NotStarted
 	ac.AchievementID = ""
 }
