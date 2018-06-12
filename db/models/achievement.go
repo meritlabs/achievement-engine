@@ -17,6 +17,7 @@ type AchievementCondition struct {
 	Status        int    `bson:"status" json:"status"`
 	GoalSlug      int    `bson:"goalSlug" json:"goalSlug"`
 	AchievementID string `bson:"achievementId" json:"achievementId"`
+	Description   string `bson:"description" json:"description"`
 }
 
 func (ac *AchievementCondition) FromGoalCondition(gc *GoalCondition) {
