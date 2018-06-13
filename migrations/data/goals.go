@@ -106,7 +106,7 @@ func UpdateGoals(session *mgo.Session) {
 	db := session.DB("achievement-engine").C("goals")
 	db.Upsert(bson.M{"slug": creator.Slug}, creator)
 	db.Upsert(bson.M{"slug": fastStarter.Slug}, fastStarter)
-	// db.Upsert(bson.M{"slug": tycoon.Slug}, tycoon)
-	// db.Upsert(bson.M{"slug": growthMaster.Slug}, growthMaster)
+	db.Upsert(bson.M{"slug": tycoon.Slug}, tycoon)
+	db.Upsert(bson.M{"slug": growthMaster.Slug}, growthMaster)
 
 }
