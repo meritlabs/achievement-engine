@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/meritlabs/achievement-engine/db/stores"
+	"github.com/meritlabs/achievement-engine/pkg/db/stores"
 )
 
 func ListGoals(store *stores.Store) gin.HandlerFunc {

@@ -7,10 +7,10 @@ import (
 
 	"github.com/btcsuite/btcd/chaincfg"
 	"github.com/gin-gonic/gin"
-	"github.com/meritlabs/achievement-engine/api/controllers"
-	"github.com/meritlabs/achievement-engine/api/middleware"
-	"github.com/meritlabs/achievement-engine/api/services"
-	"github.com/meritlabs/achievement-engine/db/stores"
+	"github.com/meritlabs/achievement-engine/pkg/controllers"
+	"github.com/meritlabs/achievement-engine/pkg/db/stores"
+	"github.com/meritlabs/achievement-engine/pkg/middleware"
+	"github.com/meritlabs/achievement-engine/pkg/services"
 	"github.com/spf13/viper"
 )
 

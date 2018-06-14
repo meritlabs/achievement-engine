@@ -4,9 +4,9 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/meritlabs/achievement-engine/api/dto"
-	"github.com/meritlabs/achievement-engine/db/models"
-	"github.com/meritlabs/achievement-engine/db/stores"
+	"github.com/meritlabs/achievement-engine/pkg/db/models"
+	"github.com/meritlabs/achievement-engine/pkg/db/stores"
+	"github.com/meritlabs/achievement-engine/pkg/dto"
 )
 
 func GetSettings(store *stores.Store) gin.HandlerFunc {

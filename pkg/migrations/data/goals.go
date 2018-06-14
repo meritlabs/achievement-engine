@@ -3,7 +3,7 @@ package data
 import (
 	"github.com/globalsign/mgo"
 	"github.com/globalsign/mgo/bson"
-	"github.com/meritlabs/achievement-engine/db/models"
+	"github.com/meritlabs/achievement-engine/pkg/db/models"
 )
 
 func UpdateGoals(session *mgo.Session) {

@@ -13,11 +13,11 @@ build: build-achievement-engine build-achievement-engine-migrations
 
 .PHONY: build-achievement-engine
 build-achievement-engine:
-	cd "$(SRC)" && $(GO) build -o achievement-engine api/main.go
+	cd "$(SRC)" && $(GO) build -o achievement-engine cmd/api/main.go
 
 .PHONY: build-achievement-engine-migrations
 build-achievement-engine-migrations:
-	cd "$(SRC)" && $(GO) build -o achievement-engine-migrations migrations/main.go
+	cd "$(SRC)" && $(GO) build -o achievement-engine-migrations cmd/migrations/main.go
 
 .PHONY: clean
 clean:

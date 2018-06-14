@@ -7,8 +7,8 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/globalsign/mgo/bson"
-	"github.com/meritlabs/achievement-engine/db/models"
-	"github.com/meritlabs/achievement-engine/db/stores"
+	"github.com/meritlabs/achievement-engine/pkg/db/models"
+	"github.com/meritlabs/achievement-engine/pkg/db/stores"
 )
 
 func ListAchievements(store *stores.Store) gin.HandlerFunc {

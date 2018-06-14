@@ -3,7 +3,7 @@ package stores
 import (
 	"github.com/globalsign/mgo"
 
-	"github.com/meritlabs/achievement-engine/db"
+	"github.com/meritlabs/achievement-engine/pkg/db"
 )
 
 type Store struct {

@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 
-	"github.com/meritlabs/achievement-engine/db"
-	"github.com/meritlabs/achievement-engine/migrations/data"
+	"github.com/meritlabs/achievement-engine/pkg/db"
+	"github.com/meritlabs/achievement-engine/pkg/migrations/data"
 	"github.com/spf13/viper"
 )
 

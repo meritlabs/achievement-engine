@@ -7,9 +7,9 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/meritlabs/achievement-engine/api/utils"
-	"github.com/meritlabs/achievement-engine/db/models"
-	"github.com/meritlabs/achievement-engine/db/stores"
+	"github.com/meritlabs/achievement-engine/pkg/db/models"
+	"github.com/meritlabs/achievement-engine/pkg/db/stores"
+	"github.com/meritlabs/achievement-engine/pkg/utils"
 
 	"github.com/btcsuite/btcd/btcec"
 	"github.com/btcsuite/btcd/chaincfg"
