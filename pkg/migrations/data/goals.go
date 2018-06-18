@@ -2,61 +2,61 @@ package data
 
 import (
 	"github.com/globalsign/mgo"
-	"github.com/globalsign/mgo/bson"
-	"github.com/meritlabs/achievement-engine/pkg/db/models"
+	//"github.com/globalsign/mgo/bson"
+	//"github.com/meritlabs/achievement-engine/pkg/db/models"
 )
 
 func UpdateGoals(session *mgo.Session) {
 
-	var creatorConditions []models.GoalCondition
-	creatorConditions = append(creatorConditions, models.GoalCondition{
-		Name:        "Create wallet",
-		Description: "",
-		Slug:        1,
-	})
-	creatorConditions = append(creatorConditions, models.GoalCondition{
-		Name:        "Unlock wallet",
-		Description: "",
-		Slug:        2,
-	})
-	creator := models.Goal{
-		Slug:        1,
-		Name:        "Creator",
-		Description: "Create and unlock your first wallet.",
-		Image:       "achi-creator",
-		Conditions:  creatorConditions,
-		Version:     1,
-	}
-
-	var fastStarterConditions []models.GoalCondition
-	fastStarterConditions = append(fastStarterConditions, models.GoalCondition{
-		Name:        "Invite Your Friends to Merit!",
-		Description: "Share your alias with your friends! Your alias can be used as their invite code when they create a wallet.",
-		Slug:        1,
-	})
-	fastStarterConditions = append(fastStarterConditions, models.GoalCondition{
-		Name:        "Add a friend to your invite waitlist",
-		Description: "You can populate your invite waitlist at any time, even when you don’t have available invites! Just share your alias with your friends and have them use it as their invite code when they create their Merit Wallet.",
-		Slug:        2,
-	})
-	fastStarterConditions = append(fastStarterConditions, models.GoalCondition{
-		Name:        "Mine an invite",
-		Description: "Invites are randomly distributed among the Merit community with every block that is mined. Keep an eye out for new invites in your wallet!",
-		Slug:        3,
-	})
-	fastStarterConditions = append(fastStarterConditions, models.GoalCondition{
-		Name:        "Confirm an invite request",
-		Description: "Confirm the invite requests pending in your invite waitlist! Remember, invites are scarce!",
-		Slug:        4,
-	})
-	fastStarter := models.Goal{
-		Slug:        2,
-		Name:        "Fast Starter",
-		Description: "Create and unlock your first wallet.",
-		Image:       "achi-start",
-		Conditions:  fastStarterConditions,
-		Version:     1,
-	}
+	//var creatorConditions []models.GoalCondition
+	//creatorConditions = append(creatorConditions, models.GoalCondition{
+	//	Name:        "Create wallet",
+	//	Description: "",
+	//	Slug:        models.CreateWallet,
+	//})
+	//creatorConditions = append(creatorConditions, models.GoalCondition{
+	//	Name:        "Unlock wallet",
+	//	Description: "",
+	//	Slug:        models.UnlockWallet,
+	//})
+	//creator := models.Goal{
+	//	Slug:        models.Creator,
+	//	Name:        "Creator",
+	//	Description: "Create and unlock your first wallet.",
+	//	Image:       "achi-creator",
+	//	Conditions:  creatorConditions,
+	//	Version:     1,
+	//}
+	//
+	//var fastStarterConditions []models.GoalCondition
+	//fastStarterConditions = append(fastStarterConditions, models.GoalCondition{
+	//	Name:        "Invite Your Friends to Merit!",
+	//	Description: "Share your alias with your friends! Your alias can be used as their invite code when they create a wallet.",
+	//	Slug:        models.InviteFriends,
+	//})
+	//fastStarterConditions = append(fastStarterConditions, models.GoalCondition{
+	//	Name:        "Add a friend to your invite waitlist",
+	//	Description: "You can populate your invite waitlist at any time, even when you don’t have available invites! Just share your alias with your friends and have them use it as their invite code when they create their Merit Wallet.",
+	//	Slug:        models.ReceiveInviteRequest,
+	//})
+	//fastStarterConditions = append(fastStarterConditions, models.GoalCondition{
+	//	Name:        "Mine an invite",
+	//	Description: "Invites are randomly distributed among the Merit community with every block that is mined. Keep an eye out for new invites in your wallet!",
+	//	Slug:        models.MineInvite,
+	//})
+	//fastStarterConditions = append(fastStarterConditions, models.GoalCondition{
+	//	Name:        "Confirm an invite request",
+	//	Description: "Confirm the invite requests pending in your invite waitlist! Remember, invites are scarce!",
+	//	Slug:        models.ConfirmInviteRequest,
+	//})
+	//fastStarter := models.Goal{
+	//	Slug:        models.FastStarter,
+	//	Name:        "Fast Starter",
+	//	Description: "Create and unlock your first wallet.",
+	//	Image:       "achi-start",
+	//	Conditions:  fastStarterConditions,
+	//	Version:     1,
+	//}
 
 	// var tycoonConditions []models.GoalCondition
 	// tycoonConditions = append(tycoonConditions, models.GoalCondition{
@@ -103,9 +103,9 @@ func UpdateGoals(session *mgo.Session) {
 	// 	Version:     1,
 	// }
 
-	db := session.DB("achievement-engine").C("goals")
-	db.Upsert(bson.M{"slug": creator.Slug}, creator)
-	db.Upsert(bson.M{"slug": fastStarter.Slug}, fastStarter)
+	//db := session.DB("achievement-engine").C("goals")
+	//db.Upsert(bson.M{"slug": creator.Slug}, creator)
+	//db.Upsert(bson.M{"slug": fastStarter.Slug}, fastStarter)
 	// db.Upsert(bson.M{"slug": tycoon.Slug}, tycoon)
 	// db.Upsert(bson.M{"slug": growthMaster.Slug}, growthMaster)
 
