@@ -39,5 +39,5 @@ Merit Market is easy to run.
 
 1. Allow RPC connections and start `meritd` 
 1. Copy `config.sample.yml` to `config.yml` and update configuration with your dev environment
-1. Migrate the database: `go run cmd/migrattions/main.go`
+1. Migrate the database: `go run cmd/migrations/main.go`
 1. Run the main server: `go run cmd/api/main.go`
