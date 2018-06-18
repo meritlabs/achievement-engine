@@ -51,7 +51,7 @@ func createUserService(store *stores.Store, logger *log.Logger) services.UsersSe
 		logger,
 	)
 
-	usersService := services.UsersService{Net, BCClient, store, store, store, store, store}
+	usersService := services.UsersService{Net, BCClient, store, store, store, store}
 	return usersService
 }
 
@@ -77,13 +77,12 @@ func main() {
 
 		goals := apiGroup.Group("/goals")
 		{
-			goals.GET("/", controllers.ListGoals(store))
+			goals.GET("/", controllers.ListGoals)
 		}
-		achievements := apiGroup.Group("/achievements", middleware.Auth(store, store))
+		progress := apiGroup.Group("/progress", middleware.Auth(store, store))
 		{
-			achievements.GET("/", controllers.ListAchievements(store))
-			achievements.GET("/:slug", controllers.GetAchievement(store))
-			achievements.POST("/:slug/step/:step/complete", controllers.UpdateAchievement(store))
+			progress.GET("/", controllers.GetProgress(store))
+			progress.POST("/task", controllers.UpdateTask(store))
 		}
 		settings := apiGroup.Group("/settings", middleware.Auth(store, store))
 		{
