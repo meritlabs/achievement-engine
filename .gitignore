@@ -1,3 +1,6 @@
+.idea
+.DS_STORE
+
 # Binaries
 achievement-engine
 achievement-engine-migrations
