@@ -12,8 +12,8 @@ const (
 )
 
 type TaskProgress struct {
-	GoalSlug goal.TaskSlug `bson:"goalSlug" json:"goalSlug"`
-	Status   int           `bson:"status" json:"status"`
+	Slug   goal.TaskSlug `bson:"slug" json:"slug"`
+	Status int           `bson:"status" json:"status"`
 }
 
 type Progress struct {
