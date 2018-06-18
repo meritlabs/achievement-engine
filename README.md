@@ -14,7 +14,7 @@ Achievement Engine is built in the wonderful Go language, and utilizes a baselin
 1. Install [dep](https://golang.github.io/dep/docs/installation.html)
 1. Then install dependencies: `make bootstrap`
 1. Install MongoDB if you don't already have it.
-1. Optionally, install Air for hot code reloading: [Air Repo](github.com/cosmtrek/air)
+1. Optionally, install Air for hot code reloading: [Air Repo](https://github.com/cosmtrek/air)
 1. Compile `meritd` and configure it like it is done for MWS.
 
 ## Building the app
