@@ -47,7 +47,7 @@ func UpdateTask(store *stores.Store) gin.HandlerFunc {
 			}
 		} else {
 			for _, t := range p.Tasks {
-				if t.GoalSlug == taskProgress.GoalSlug {
+				if t.Slug == taskProgress.Slug {
 					found = true
 					t.Status = taskProgress.Status
 				}
@@ -58,7 +58,7 @@ func UpdateTask(store *stores.Store) gin.HandlerFunc {
 
 		if !found {
 			tasks = append(tasks, progress.TaskProgress{
-				GoalSlug: taskProgress.GoalSlug,
+				Slug: taskProgress.Slug,
 				Status: taskProgress.Status,
 			})
 		}
