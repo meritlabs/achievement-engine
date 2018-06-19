@@ -12,6 +12,7 @@ import (
 	"github.com/meritlabs/achievement-engine/pkg/middleware"
 	"github.com/meritlabs/achievement-engine/pkg/services"
 	"github.com/spf13/viper"
+	"github.com/gin-contrib/cors"
 )
 
 func initializeConfig() {
@@ -92,5 +93,6 @@ func main() {
 		}
 	}
 
+	router.Use(cors.Default())
 	router.Run(viper.GetString("port"))
 }
