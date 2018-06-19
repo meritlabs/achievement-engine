@@ -23,13 +23,12 @@ const msgMagic = "Merit Signed Message:\n"
 
 // UsersService
 type UsersService struct {
-	NetParams         chaincfg.Params
-	BCClient          Client
-	UsersStore        stores.UsersStore
-	SessionsStore     stores.SessionsStore
-	GoalsStore        stores.GoalsStore
-	AchievementsStore stores.AchievementsStore
-	SettingsStore     stores.SettingsStore
+	NetParams     chaincfg.Params
+	BCClient      Client
+	UsersStore    stores.UsersStore
+	SessionsStore stores.SessionsStore
+	SettingsStore stores.SettingsStore
+	ProgressStore stores.ProgressStore
 }
 
 /// NEEW
@@ -184,24 +183,24 @@ func (s *UsersService) setUpUserData(user *models.User) error {
 		s.SettingsStore.CreateUserSettings(user.ID)
 	}
 
-	achievements, err := s.AchievementsStore.GetAchievementsForUser(user.ID)
-	if err != nil {
-		return err
-	}
-
-	if len(*achievements) > 0 {
-		return nil
-	}
-
-	goals, err := s.GoalsStore.ListGoals()
-	if err != nil {
-		return err
-	}
-
-	_, err = s.AchievementsStore.CopyAchievementsFromGoals(user.ID, goals)
-	if err != nil {
-		return err
-	}
+	//achievements, err := s.AchievementsStore.GetAchievementsForUser(user.ID)
+	//if err != nil {
+	//	return err
+	//}
+	//
+	//if len(*achievements) > 0 {
+	//	return nil
+	//}
+	//
+	//goals, err := s.GoalsStore.ListGoals()
+	//if err != nil {
+	//	return err
+	//}
+	//
+	//_, err = s.AchievementsStore.CopyAchievementsFromGoals(user.ID, goals)
+	//if err != nil {
+	//	return err
+	//}
 
 	return nil
 }
