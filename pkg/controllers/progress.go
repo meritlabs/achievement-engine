@@ -42,8 +42,11 @@ func UpdateTask(store *stores.Store) gin.HandlerFunc {
 		tasks := []progress.TaskProgress{}
 
 		if err != nil || &p == nil {
-			p = &progress.Progress{
-				UserID: user.ID,
+			p, err = store.CreateProgress(user.ID)
+
+			if err != nil {
+				c.AbortWithError(http.StatusBadRequest, dto.BadRequestError{Message: "Unable to fetch or create progress document"})
+				return
 			}
 		} else {
 			for _, t := range p.Tasks {

@@ -8,7 +8,7 @@ import (
 type ProgressStore interface {
 	GetProgress(userId bson.ObjectId) (*progress.Progress, error)
 	SetProgress(userId bson.ObjectId, progress progress.Progress) error
-	CreateProgress(p *progress.Progress) (*progress.Progress, error)
+	CreateProgress(userId bson.ObjectId) (*progress.Progress, error)
 }
 
 func (s *Store) GetProgress(userId bson.ObjectId) (*progress.Progress, error) {
@@ -22,12 +22,12 @@ func (s *Store) SetProgress(userId bson.ObjectId, p progress.Progress) error {
 	return err
 }
 
-func (s *Store) CreateProgress(p *progress.Progress) (*progress.Progress, error) {
-	_, err := s.Progress.Upsert(bson.M{"userId": p.UserID}, p)
+func (s *Store) CreateProgress(userId bson.ObjectId) (*progress.Progress, error) {
+	_, err := s.Progress.Upsert(bson.M{"userId": userId}, progress.Progress{ UserID: userId })
 
 	if err != nil {
 		return nil, err
 	}
 
-	return s.GetProgress(p.UserID)
+	return s.GetProgress(userId)
 }
