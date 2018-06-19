@@ -28,9 +28,9 @@ func GetProgress(store *stores.Store) gin.HandlerFunc {
 
 func UpdateTask(store *stores.Store) gin.HandlerFunc {
 	return func(c *gin.Context) {
-		var taskProgress progress.TaskProgress
+		taskProgress := &progress.TaskProgress{}
 		user := c.MustGet("user").(*models.User)
-		err := c.BindJSON(taskProgress)
+		err := c.ShouldBindJSON(&taskProgress)
 
 		if err != nil {
 			c.AbortWithError(http.StatusBadRequest, dto.BadRequestError{Message: "Invalid request object"})

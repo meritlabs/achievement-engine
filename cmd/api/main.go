@@ -12,6 +12,7 @@ import (
 	"github.com/meritlabs/achievement-engine/pkg/middleware"
 	"github.com/meritlabs/achievement-engine/pkg/services"
 	"github.com/spf13/viper"
+	"github.com/gin-contrib/cors"
 )
 
 func initializeConfig() {
@@ -82,7 +83,7 @@ func main() {
 		progress := apiGroup.Group("/progress", middleware.Auth(store, store))
 		{
 			progress.GET("/", controllers.GetProgress(store))
-			progress.POST("/task", controllers.UpdateTask(store))
+			progress.POST("/task/", controllers.UpdateTask(store))
 		}
 		settings := apiGroup.Group("/settings", middleware.Auth(store, store))
 		{
@@ -92,5 +93,6 @@ func main() {
 		}
 	}
 
+	router.Use(cors.Default())
 	router.Run(viper.GetString("port"))
 }
