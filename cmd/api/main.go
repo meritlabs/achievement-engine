@@ -83,7 +83,7 @@ func main() {
 		progress := apiGroup.Group("/progress", middleware.Auth(store, store))
 		{
 			progress.GET("/", controllers.GetProgress(store))
-			progress.POST("/task", controllers.UpdateTask(store))
+			progress.POST("/task/", controllers.UpdateTask(store))
 		}
 		settings := apiGroup.Group("/settings", middleware.Auth(store, store))
 		{
