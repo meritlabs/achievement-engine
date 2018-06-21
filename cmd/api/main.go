@@ -5,14 +5,14 @@ import (
 	"log"
 	"os"
 
-	"github.com/btcsuite/btcd/chaincfg"
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/meritlabs/achievement-engine/pkg/controllers"
 	"github.com/meritlabs/achievement-engine/pkg/db/stores"
 	"github.com/meritlabs/achievement-engine/pkg/middleware"
 	"github.com/meritlabs/achievement-engine/pkg/services"
+	"github.com/meritlabs/achievement-engine/pkg/utils"
 	"github.com/spf13/viper"
-	"github.com/gin-contrib/cors"
 )
 
 func initializeConfig() {
@@ -39,20 +39,16 @@ func createStores() *stores.Store {
 }
 
 func createUserService(store *stores.Store, logger *log.Logger) services.UsersService {
-	Net := chaincfg.Params{
-		Name:             viper.GetString("blockchain.network"),
-		PubKeyHashAddrID: 110,
-		ScriptHashAddrID: 125,
-	}
+	net := utils.GetNetParams(viper.GetString("blockchain.network"))
 
-	BCClient := services.NewClient(
+	bcClient := services.NewClient(
 		viper.GetString("blockchain.rpc.host"),
 		viper.GetString("blockchain.rpc.user"),
 		viper.GetString("blockchain.rpc.password"),
 		logger,
 	)
 
-	usersService := services.UsersService{Net, BCClient, store, store, store, store}
+	usersService := services.UsersService{net, bcClient, store, store, store, store}
 	return usersService
 }
 

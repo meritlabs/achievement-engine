@@ -7,6 +7,7 @@ import (
 	"os"
 )
 
+// GetEnv returns current environment name: dev or prod
 func GetEnv() string {
 	env := os.Getenv("ENV")
 	if len(env) == 0 {
