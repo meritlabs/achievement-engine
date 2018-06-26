@@ -52,7 +52,7 @@ func GetGoals() []Goal {
 		},
 		Task{
 			Name:        "Unlock wallet",
-			Description: "",
+			Description: "Receive your activation token from a friend.",
 			Slug:        UnlockWallet,
 		},
 	}
