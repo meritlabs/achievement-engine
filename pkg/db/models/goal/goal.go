@@ -77,8 +77,8 @@ func GetGoals() []Goal {
 			Slug:        ReceiveInviteRequest,
 		},
 		Task{
-			Name:        "Mine an invite",
-			Description: "Invites are randomly distributed among the Merit community with every block that is mined. Keep an eye out for new invites in your wallet!",
+			Name:        "Receive an invite",
+			Description: "Receive an invite from a friend, or mine an invite to complete this task. Invites are randomly distributed among the Merit community with every block that is mined. Keep an eye out for new invites in your wallet!",
 			Slug:        MineInvite,
 		},
 		Task{
