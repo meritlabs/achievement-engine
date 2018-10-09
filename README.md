@@ -41,3 +41,13 @@ Merit Market is easy to run.
 1. Copy `config.sample.yml` to `config.yml` and update configuration with your dev environment
 1. Migrate the database: `go run cmd/migrations/main.go`
 1. Run the main server: `go run cmd/api/main.go`
+
+## Contributing
+
+Please, check out our [Contribution guide](./CONTRIBUTING.md) and [Code of Conduct](./CODE_OF_CONDUCT.md).
+
+## License
+
+**Code released under [the MIT license](./LICENSE).**
+
+Copyright (C) 2017 - 2018 The Merit Foundation.
