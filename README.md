@@ -3,7 +3,7 @@
 The service is API layer for achievement management for users of client applications, like web wallets.
 
 It provides:
-- API over HTTP protocol for achievemene management
+- API over HTTP protocol for achievement management
 - Encrypted key verification - Users authenticate with the Merit market using the same Public/Private key encryption that they use with the Merit Protocol.
 
 ## Setting up the app
@@ -11,7 +11,6 @@ It provides:
 Achievement Engine is built in the wonderful Go language, and utilizes a baseline set of libraries to keep it very lightweight.
 
 1. To get set up, first install Golang: [download](http://golang.org/downloads)
-1. Install [dep](https://golang.github.io/dep/docs/installation.html)
 1. Then install dependencies: `make bootstrap`
 1. Install MongoDB if you don't already have it.
 1. Optionally, install Air for hot code reloading: [Air Repo](https://github.com/cosmtrek/air)
