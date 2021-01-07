@@ -6,7 +6,7 @@ The following is a set of guidelines for contributing to Achievement Engine, whi
 
 # Code of Conduct
 
-This project and everyone participating in it is governed by the [Code of Conduct](./CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to support@merit.me or our public [slack](https://slackin.merit.me/), [discord](https://discordapp.com/invite/X3v3n3b), and [Telegram](https://t.me/meritocracy).
+This project and everyone participating in it is governed by the [Code of Conduct](./CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to support@merit.me or our public [discord](https://discordapp.com/invite/X3v3n3b).
 
 # How to contribute?
 
@@ -23,7 +23,7 @@ This project and everyone participating in it is governed by the [Code of Conduc
 
 ## Do you have questions about the source code?
 
-* Contact us directly using our public [slack](https://slackin.merit.me/), [discord](https://discordapp.com/invite/X3v3n3b), or [Telegram](https://t.me/meritocracy).
+* Contact us directly using our public [discord](https://discordapp.com/invite/X3v3n3b).
 * Or open an issue and add the `question` label.
 
 # What do I need to know to help?
@@ -36,7 +36,7 @@ Never made an open source contribution before? Wondering how contributions work 
 
 * Find an issue that you are interested in addressing or a feature that you would like to add.
 * Fork the repository associated with the issue to your local GitHub profile. This means that you will have a copy of the repository under `your-GitHub-username/repository-name`.
-* Clone the repository to your local machine using `git clone https://github.com/github-username/repository-name.git`.
+* Clone the repository to your local machine using `git clone https://github.com/meritlabs/achievement-engine.git`.
 * Create a new branch for your fix using `git checkout -b branch-name-here`.
 * Make the appropriate changes for the issue you are trying to address or the feature that you want to add.
 * Use `git add insert-paths-of-changed-files-here` to add the file contents of the changed files to the "snapshot" git uses to manage the state of the project, also known as the index.
@@ -51,4 +51,4 @@ Never made an open source contribution before? Wondering how contributions work 
 
 ## Where can I go for help?
 
-If you need help, you can ask questions on our mailing list, [slack](https://slackin.merit.me/), [discord](https://discordapp.com/invite/X3v3n3b), or [Telegram](https://t.me/meritocracy).
+If you need help, you can ask questions on our[discord](https://discordapp.com/invite/X3v3n3b).
